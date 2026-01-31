@@ -152,17 +152,31 @@ export function Skills() {
             return (
               <motion.div
                 key={category.name}
-                className="group relative p-6 rounded-2xl sekai-card"
+                className="group relative p-6 rounded-2xl sekai-card hover-lift"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+                whileHover={{ scale: 1.01 }}
               >
+                {/* Animated sparkle on hover */}
+                <motion.div
+                  className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+                >
+                  <Sparkles className={`w-4 h-4 ${styles.text}`} />
+                </motion.div>
+
                 {/* Category header with Japanese */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-lg bg-[var(--color-bg-elevated)]`}>
+                  <motion.div 
+                    className={`p-2 rounded-lg bg-[var(--color-bg-elevated)]`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  >
                     <Sparkles className={`w-5 h-5 ${styles.text}`} />
-                  </div>
+                  </motion.div>
                   <div className="flex flex-col">
                     <h3 className={`text-lg font-bold font-display ${styles.text}`}>
                       {category.name}
@@ -181,6 +195,10 @@ export function Skills() {
                       className={`px-4 py-2 rounded-full text-sm font-medium border ${styles.pill} text-[var(--color-text-primary)] transition-all duration-300 cursor-default font-jp`}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        boxShadow: '0 0 15px rgba(0, 212, 170, 0.2)',
+                      }}
                       viewport={{ once: true }}
                       transition={{
                         duration: 0.3,

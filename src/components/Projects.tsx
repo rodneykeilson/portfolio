@@ -41,14 +41,23 @@ const projects: Project[] = [
     color: 'pink',
   },
   {
+    title: 'MikuMikuWorldEX',
+    description: 'Universal Chart Editor Fork',
+    longDescription: 'Extended fork of MikuMikuWorld4CC, a universal rhythm game chart editor. Features enhanced preview system with official in-game particle effects.',
+    tech: ['C++', 'OpenGL', 'ImGui', 'GLFW'],
+    github: 'https://github.com/rodneykeilson/MikuMikuWorldEX',
+    category: 'tool',
+    featured: true,
+    color: 'purple',
+  },
+  {
     title: 'ScrapiReddit',
     description: 'Zero-Auth Reddit Scraping Toolkit',
     longDescription: 'Complete Reddit scraper without API keys. Features pagination, comment harvesting, media archiving, and CSV exports with resilient caching.',
     tech: ['Python', 'Requests', 'TOML', 'CLI'],
     github: 'https://github.com/rodneykeilson/ScrapiReddit',
     category: 'tool',
-    featured: true,
-    color: 'purple',
+    color: 'cyan',
   },
   {
     title: 'Commulyzer',
@@ -57,7 +66,7 @@ const projects: Project[] = [
     tech: ['Python', 'Pandas', 'Regex', 'Data Pipeline'],
     github: 'https://github.com/rodneykeilson/Commulyzer',
     category: 'tool',
-    color: 'cyan',
+    color: 'pink',
   },
   {
     title: 'Plagiarism Split Checker',
@@ -66,7 +75,7 @@ const projects: Project[] = [
     tech: ['React', 'TypeScript', 'PDF.js', 'TailwindCSS'],
     github: 'https://github.com/rodneykeilson/plagiarism-split-checker',
     category: 'web',
-    color: 'pink',
+    color: 'purple',
   },
   {
     title: 'EverdrivenDays',
@@ -75,45 +84,45 @@ const projects: Project[] = [
     tech: ['Unity', 'C#', 'Game Development'],
     github: 'https://github.com/rodneykeilson/EverdrivenDays',
     category: 'game',
-    color: 'purple',
+    color: 'cyan',
   },
 ];
 
-// Private projects - showcased without revealing details
+// Private projects - showcased without revealing names
 const privateProjects: PrivateProject[] = [
   {
-    title: 'AI Rhythm Game Agent',
-    description: 'ML-powered bot that learns to play mobile rhythm games using computer vision',
-    category: 'ml',
+    title: 'Private Project #1',
+    description: 'Rhythm game utilities and tools suite with real-time data integration',
+    category: 'tool',
     color: 'cyan',
   },
   {
-    title: 'Enterprise Web Platform',
+    title: 'Private Project #2',
     description: 'Full-stack B2B company website with product catalog and admin dashboard',
     category: 'web',
     color: 'pink',
   },
   {
-    title: 'Interactive Stream Games',
-    description: 'Physics-based games controlled by Twitch/YouTube chat for live streaming',
+    title: 'Private Project #3',
+    description: 'Interactive browser-based game with multiplayer support',
     category: 'game',
     color: 'purple',
   },
   {
-    title: 'Battle Simulation Engine',
+    title: 'Private Project #4',
     description: 'Autonomous AI character battles designed for short-form content creation',
     category: 'game',
     color: 'cyan',
   },
   {
-    title: 'Mobile Queue System',
-    description: 'Cross-platform queue management app with real-time notifications',
-    category: 'mobile',
+    title: 'Private Project #5',
+    description: 'Personal automation and AI-powered assistant project',
+    category: 'ml',
     color: 'pink',
   },
   {
-    title: 'Game Data Scraper',
-    description: 'Specialized data extraction tools for rhythm game assets and metadata',
+    title: 'Private Project #6',
+    description: 'Specialized data extraction tools for game assets and metadata',
     category: 'tool',
     color: 'purple',
   },
@@ -219,12 +228,22 @@ export function Projects() {
             return (
               <motion.article
                 key={project.title}
-                className="group relative p-6 rounded-2xl sekai-card"
+                className="group relative p-6 rounded-2xl sekai-card hover-lift kira-corners"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
               >
+                {/* Sparkle decoration on hover */}
+                <motion.div
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                >
+                  <Sparkles className={`w-4 h-4 ${colors.text}`} />
+                </motion.div>
+
                 {/* Category badge */}
                 <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${colors.bg} mb-4`}>
                   <IconComponent className={`w-3.5 h-3.5 ${colors.text}`} />
@@ -251,12 +270,13 @@ export function Projects() {
                 {/* Tech stack */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
-                    <span
+                    <motion.span
                       key={tech}
-                      className="px-2 py-1 text-xs rounded-md bg-[var(--color-bg-elevated)] text-[var(--color-text-secondary)] border border-[var(--color-glass-border)]"
+                      className="px-2 py-1 text-xs rounded-md bg-[var(--color-bg-elevated)] text-[var(--color-text-secondary)] border border-[var(--color-glass-border)] hover:border-[var(--color-sekai-cyan)]/30 transition-colors"
+                      whileHover={{ scale: 1.05 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 

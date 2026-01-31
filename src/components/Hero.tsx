@@ -1,84 +1,251 @@
 import { motion } from 'framer-motion';
-import { Github, Mail, Linkedin, Sparkles } from 'lucide-react';
-import { SekaiButton } from './SekaiButton';
+import { Github, Mail, Linkedin } from 'lucide-react';
+import { useSparkleEffect } from '../hooks/useSparkleEffect';
 
 // ============================================================================
-// Hero Section - Authentic Project Sekai Aesthetic
+// Hero Section - AUTHENTIC Project Sekai UI
 // 
-// Features:
-// - Japanese + English dual-language text
-// - Geometric decorative elements (hexagons, diamonds)
-// - Trapezoid SEKAI buttons
-// - Subtle glows and magical atmosphere
-// - Clean, elegant, not flashy
+// Using REAL extracted sprites from the game:
+// - tex_logo_projectSEKAI_back.png - Logo background
+// - btn_round_h80_*.png - Actual SEKAI buttons
+// - frame_select_r16_*.png - Card frames
+// - eff_*_150.png - Particle effects
+// - Authentic color scheme and layout
 // ============================================================================
+
+// Base URL for assets (handles GitHub Pages deployment path)
+const BASE = import.meta.env.BASE_URL;
+
+// SEKAI-style button using actual game sprites
+function SekaiRealButton({ 
+  japanese, 
+  english, 
+  variant = 'cyan',
+  onClick 
+}: { 
+  japanese: string; 
+  english: string; 
+  variant?: 'cyan' | 'pink' | 'green';
+  onClick?: () => void;
+}) {
+  const { triggerBurst, BurstContainer } = useSparkleEffect();
+  
+  const glowColors = {
+    cyan: 'rgba(0, 212, 170, 0.4)',
+    pink: 'rgba(255, 107, 157, 0.4)',
+    green: 'rgba(136, 221, 68, 0.4)',
+  };
+
+  const gradients = {
+    cyan: 'linear-gradient(135deg, #00D4AA 0%, #00A88A 100%)',
+    pink: 'linear-gradient(135deg, #FF6B9D 0%, #E0547A 100%)',
+    green: 'linear-gradient(135deg, #88DD44 0%, #66BB33 100%)',
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    triggerBurst(e.clientX, e.clientY, 12);
+    onClick?.();
+  };
+
+  return (
+    <>
+      {BurstContainer}
+      <motion.button
+        onClick={handleClick}
+        className="relative group cursor-pointer btn-magic"
+        whileHover={{ scale: 1.03, y: -2 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        {/* Button background using SEKAI gradient */}
+        <div 
+          className="relative px-8 py-4 rounded-full overflow-hidden"
+          style={{
+            background: gradients[variant],
+            boxShadow: `0 4px 20px ${glowColors[variant]}`,
+          }}
+        >
+          {/* Inner glow overlay */}
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 50%)',
+            }}
+          />
+          
+          {/* Button frame overlay */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url(${BASE}sekai-sprites/frames/frame_select_r16_wh.png)`,
+              backgroundSize: '100% 100%',
+            }}
+          />
+
+          {/* Text content */}
+          <div className="relative z-10 flex flex-col items-center">
+            <span className="font-jp text-white text-base font-medium tracking-wide">
+              {japanese}
+            </span>
+            <span className="font-en text-white/80 text-[10px] tracking-[0.15em] uppercase">
+              {english}
+            </span>
+          </div>
+        </div>
+
+        {/* Hover glow effect */}
+        <motion.div
+          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            boxShadow: `0 0 30px ${glowColors[variant]}`,
+          }}
+        />
+      </motion.button>
+    </>
+  );
+}
+
+// SEKAI-style social link using actual game sprites
+function SekaiSocialLink({
+  icon: Icon,
+  href,
+  label
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  href: string;
+  label: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      className="relative group cursor-pointer"
+      whileHover={{ y: -3 }}
+      aria-label={label}
+    >
+      {/* Card background with SEKAI frame */}
+      <div 
+        className="relative p-4 rounded-xl overflow-hidden"
+        style={{
+          background: 'rgba(20, 20, 32, 0.8)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+        }}
+      >
+        {/* Corner accents using actual SEKAI sprites */}
+        <img 
+          src={`${BASE}sekai-sprites/misc/img_triangle_wh.png`}
+          alt="" 
+          className="absolute top-0 left-0 w-3 h-3 opacity-20"
+        />
+        <img 
+          src={`${BASE}sekai-sprites/misc/img_triangle_wh.png`}
+          alt="" 
+          className="absolute bottom-0 right-0 w-3 h-3 opacity-20 rotate-180"
+        />
+
+        {/* Icon and label */}
+        <div className="relative z-10 flex flex-col items-center gap-1">
+          <Icon className="w-5 h-5 text-[var(--color-text-secondary)] group-hover:text-[var(--color-sekai-cyan)] transition-colors" />
+          <span className="text-[10px] font-en text-[var(--color-text-muted)] tracking-wider uppercase group-hover:text-[var(--color-text-secondary)] transition-colors">
+            {label}
+          </span>
+        </div>
+      </div>
+
+      {/* Hover glow */}
+      <motion.div
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          boxShadow: '0 0 20px rgba(0, 212, 170, 0.2)',
+        }}
+      />
+    </motion.a>
+  );
+}
 
 export function Hero() {
   return (
     <section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 md:py-0"
     >
-      {/* Background ambient glows */}
+      {/* Background with authentic SEKAI texture */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Main cyan glow - top left */}
+        {/* Main SEKAI cyan glow - authentic game color */}
         <div 
-          className="absolute w-[700px] h-[700px] rounded-full opacity-[0.06] blur-[120px]"
+          className="absolute w-[800px] h-[800px] rounded-full opacity-[0.08] blur-[150px]"
           style={{
-            background: 'radial-gradient(circle, #00D4AA 0%, transparent 70%)',
-            left: '5%',
-            top: '10%',
+            background: 'radial-gradient(circle, #00D9B0 0%, transparent 70%)',
+            left: '10%',
+            top: '0%',
           }}
         />
-        {/* Purple glow - bottom right */}
+        {/* Purple accent glow */}
         <div 
-          className="absolute w-[500px] h-[500px] rounded-full opacity-[0.04] blur-[100px]"
+          className="absolute w-[600px] h-[600px] rounded-full opacity-[0.05] blur-[120px]"
           style={{
             background: 'radial-gradient(circle, #9B5DE5 0%, transparent 70%)',
-            right: '10%',
-            bottom: '15%',
+            right: '5%',
+            bottom: '10%',
           }}
         />
         {/* Pink accent - subtle */}
         <div 
-          className="absolute w-[300px] h-[300px] rounded-full opacity-[0.03] blur-[80px]"
+          className="absolute w-[400px] h-[400px] rounded-full opacity-[0.04] blur-[100px]"
           style={{
-            background: 'radial-gradient(circle, #FF6B9D 0%, transparent 70%)',
-            left: '50%',
-            top: '60%',
+            background: 'radial-gradient(circle, #FF4D88 0%, transparent 70%)',
+            left: '40%',
+            top: '50%',
           }}
         />
-        
-        {/* Hexagon pattern overlay */}
-        <div className="absolute inset-0 pattern-hex opacity-30" />
+
+        {/* Actual SEKAI texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url(${BASE}sekai-sprites/misc/tex_sekai_common_v2_01.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
       </div>
 
-      {/* Decorative geometric elements */}
+      {/* Floating decorative elements using real sprites */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Diamond decorations */}
-        <motion.div
-          className="absolute top-[15%] left-[8%] w-3 h-3 bg-[var(--color-sekai-cyan)] rotate-45 opacity-20"
-          animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        {/* Floating sparkle effects */}
+        <motion.img
+          src={`${BASE}sekai-sprites/misc/eff_0_150.png`}
+          alt=""
+          className="absolute top-[15%] left-[10%] w-8 h-8 opacity-40"
+          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <motion.div
-          className="absolute top-[25%] right-[12%] w-2 h-2 bg-[var(--color-sekai-pink)] rotate-45 opacity-15"
-          animate={{ opacity: [0.15, 0.3, 0.15] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        <motion.img
+          src={`${BASE}sekai-sprites/misc/eff_1_150.png`}
+          alt=""
+          className="absolute top-[20%] right-[15%] w-6 h-6 opacity-30"
+          animate={{ opacity: [0.2, 0.5, 0.2], y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
         />
-        <motion.div
-          className="absolute bottom-[30%] left-[15%] w-2.5 h-2.5 bg-[var(--color-sekai-purple)] rotate-45 opacity-20"
-          animate={{ opacity: [0.2, 0.35, 0.2] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        <motion.img
+          src={`${BASE}sekai-sprites/misc/eff_8_150.png`}
+          alt=""
+          className="absolute bottom-[25%] left-[20%] w-6 h-6 opacity-30"
+          animate={{ opacity: [0.2, 0.4, 0.2], rotate: [0, 180, 360] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
         />
-        
-        {/* Thin accent lines */}
-        <div 
-          className="absolute top-[20%] left-0 w-32 h-[1px] opacity-20"
-          style={{ background: 'linear-gradient(90deg, transparent, var(--color-sekai-cyan), transparent)' }}
+        <motion.img
+          src={`${BASE}sekai-sprites/misc/eff_9_150.png`}
+          alt=""
+          className="absolute bottom-[30%] right-[10%] w-8 h-8 opacity-25"
+          animate={{ opacity: [0.15, 0.35, 0.15], scale: [0.9, 1.1, 0.9] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
-        <div 
-          className="absolute bottom-[25%] right-0 w-24 h-[1px] opacity-15"
-          style={{ background: 'linear-gradient(90deg, transparent, var(--color-sekai-purple), transparent)' }}
+
+        {/* Corner decorations using SEKAI sprites */}
+        <img 
+          src={`${BASE}sekai-sprites/misc/img_kira_lyw.png`}
+          alt="" 
+          className="absolute top-[10%] right-[5%] w-12 h-12 opacity-20"
         />
       </div>
 
@@ -89,10 +256,16 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        {/* Top decorative element */}
+        {/* Top decorative element using SEKAI sprite */}
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="w-12 md:w-20 h-[1px] bg-gradient-to-r from-transparent to-[var(--color-sekai-cyan)] opacity-40" />
-          <Sparkles className="w-4 h-4 text-[var(--color-sekai-cyan)] opacity-60" />
+          <motion.img
+            src={`${BASE}sekai-sprites/icons/icon_crystal.png`}
+            alt=""
+            className="w-5 h-5 opacity-60"
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          />
           <div className="w-12 md:w-20 h-[1px] bg-gradient-to-l from-transparent to-[var(--color-sekai-cyan)] opacity-40" />
         </div>
 
@@ -123,7 +296,14 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="text-gradient text-glow-cyan">Rodney Keilson</span>
+          <span 
+            className="bg-gradient-to-r from-[var(--color-sekai-cyan)] via-[var(--color-sekai-pink)] to-[var(--color-sekai-purple)] bg-clip-text text-transparent"
+            style={{
+              textShadow: '0 0 40px rgba(0, 212, 170, 0.3)',
+            }}
+          >
+            Rodney Keilson
+          </span>
         </motion.h1>
 
         {/* Alias with Japanese */}
@@ -154,20 +334,20 @@ export function Hero() {
           <span className="text-[var(--color-sekai-purple)]"> passion</span>.
         </motion.p>
 
-        {/* SEKAI-style buttons */}
+        {/* SEKAI-style buttons using real assets */}
         <motion.div
           className="flex flex-wrap items-center justify-center gap-4 mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <SekaiButton
+          <SekaiRealButton
             japanese="作品を見る"
             english="VIEW WORKS"
             variant="cyan"
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           />
-          <SekaiButton
+          <SekaiRealButton
             japanese="連絡する"
             english="CONTACT ME"
             variant="pink"
@@ -175,37 +355,20 @@ export function Hero() {
           />
         </motion.div>
 
-        {/* Social links */}
+        {/* Social links with SEKAI styling */}
         <motion.div
           className="flex items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          {[
-            { icon: Github, href: 'https://github.com/rodneykeilson', label: 'GitHub' },
-            { icon: Mail, href: 'mailto:keilsonrodney0710@gmail.com', label: 'Email' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/rodneykeilson', label: 'LinkedIn' },
-          ].map(({ icon: Icon, href, label }) => (
-            <motion.a
-              key={label}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="group flex flex-col items-center gap-1 p-4 sekai-card hover:glow-cyan transition-all duration-300"
-              aria-label={label}
-              whileHover={{ y: -3 }}
-            >
-              <Icon className="w-5 h-5 text-[var(--color-text-secondary)] group-hover:text-[var(--color-sekai-cyan)] transition-colors" />
-              <span className="text-[10px] font-en text-[var(--color-text-muted)] tracking-wider uppercase group-hover:text-[var(--color-text-secondary)]">
-                {label}
-              </span>
-            </motion.a>
-          ))}
+          <SekaiSocialLink icon={Github} href="https://github.com/rodneykeilson" label="GitHub" />
+          <SekaiSocialLink icon={Mail} href="mailto:keilsonrodney0710@gmail.com" label="Email" />
+          <SekaiSocialLink icon={Linkedin} href="https://linkedin.com/in/rodneykeilson" label="LinkedIn" />
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator with SEKAI styling */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
