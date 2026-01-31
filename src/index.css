@@ -406,3 +406,20 @@ body {
 html {
   -webkit-overflow-scrolling: touch;
 }
+
+/* Performance optimizations */
+canvas {
+  will-change: auto;
+}
+
+/* Optimize animations that run continuously */
+.text-gradient,
+.holographic {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-animated="true"] {
+    will-change: transform;
+  }
+}

@@ -95,6 +95,7 @@ export function ParticleCanvas() {
   const animationRef = useRef<number | undefined>(undefined);
   const timeRef = useRef(0);
   const isMobileRef = useRef(false);
+  const lastFrameTimeRef = useRef(0);
 
   // Create trail particle with Project Sekai-style parameters
   const createTrailParticle = useCallback((
@@ -155,8 +156,8 @@ export function ParticleCanvas() {
     // Layer 1: Central glow (large, soft)
     effect.particles.push(createTrailParticle(x, y, 0, 0, color, 'glow', 0));
     
-    // Layer 2: Burst particles (7-12 particles)
-    const burstCount = isMobileRef.current ? 5 : (7 + Math.floor(Math.random() * 5));
+    // Layer 2: Burst particles (reduced count)
+    const burstCount = isMobileRef.current ? 3 : 5;
     for (let i = 0; i < burstCount; i++) {
       const angle = (i / burstCount) * Math.PI * 2 + Math.random() * 0.3;
       const speed = 5 + Math.random() * 15;
@@ -166,11 +167,11 @@ export function ParticleCanvas() {
       effect.particles.push(p);
     }
 
-    // Layer 3: Secondary burst with delay
-    if (!isMobileRef.current) {
+    // Layer 3: Secondary burst with delay (skip on mobile)
+    if (!isMobileRef.current && Math.random() > 0.5) {
       setTimeout(() => {
-        for (let i = 0; i < 5; i++) {
-          const angle = (i / 5) * Math.PI * 2 + Math.random() * 0.5;
+        for (let i = 0; i < 3; i++) {
+          const angle = (i / 3) * Math.PI * 2 + Math.random() * 0.5;
           const speed = 3 + Math.random() * 8;
           const p = createTrailParticle(x, y, 0, 0, color, 'trail', 2);
           p.vx = Math.cos(angle) * speed;
@@ -187,20 +188,20 @@ export function ParticleCanvas() {
   const emitTrailParticles = useCallback((x: number, y: number, vx: number, vy: number, speed: number) => {
     const color = trailColors[mouseRef.current.colorIndex % trailColors.length];
     
-    // Emit rate based on speed (faster = more particles)
-    const emitCount = Math.min(3, Math.floor(speed / 15) + 1);
+    // Emit rate based on speed (reduced for performance)
+    const emitCount = isMobileRef.current ? 1 : Math.min(2, Math.floor(speed / 20) + 1);
     
     for (let i = 0; i < emitCount; i++) {
       // Main trail particle
       particlesRef.current.push(createTrailParticle(x, y, vx, vy, color, 'trail', 0));
       
-      // Add occasional sparkle
-      if (Math.random() > 0.6 && !isMobileRef.current) {
+      // Add occasional sparkle (less frequent)
+      if (Math.random() > 0.8 && !isMobileRef.current) {
         particlesRef.current.push(createTrailParticle(x, y, vx, vy, color, 'sparkle', 1));
       }
       
-      // Add glow for high speed
-      if (speed > 30 && Math.random() > 0.7) {
+      // Add glow for high speed (skip on mobile)
+      if (speed > 30 && Math.random() > 0.85 && !isMobileRef.current) {
         particlesRef.current.push(createTrailParticle(x, y, vx * 0.5, vy * 0.5, color, 'glow', 0));
       }
     }
@@ -426,8 +427,8 @@ export function ParticleCanvas() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize ambient stars
-    const starCount = isMobileRef.current ? 15 : 35;
+    // Initialize ambient stars (reduced count)
+    const starCount = isMobileRef.current ? 8 : 20;
     for (let i = 0; i < starCount; i++) {
       particlesRef.current.push(createAmbientStar(width, height));
     }
@@ -449,12 +450,12 @@ export function ParticleCanvas() {
         mouseRef.current.trail.shift();
       }
       
-      // Emit particles based on speed and time
+      // Emit particles based on speed and time (throttled)
       const now = Date.now();
       const timeSinceEmit = now - lastEmit;
-      const emitInterval = Math.max(16, 50 - speed); // Faster movement = faster emission
+      const emitInterval = isMobileRef.current ? 80 : Math.max(30, 60 - speed);
       
-      if (speed > 3 && timeSinceEmit > emitInterval) {
+      if (speed > 5 && timeSinceEmit > emitInterval) {
         emitTrailParticles(clientX, clientY, dx * 0.5, dy * 0.5, speed);
         mouseRef.current.lastEmit = now;
       }
@@ -490,9 +491,23 @@ export function ParticleCanvas() {
     window.addEventListener('click', handleClick);
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
 
-    // Animation loop
-    const animate = () => {
+    // Animation loop with FPS limiting
+    const animate = (currentTime: number) => {
+      // Limit to 60fps max (16.67ms between frames)
+      const deltaTime = currentTime - lastFrameTimeRef.current;
+      if (deltaTime < 16.67) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTimeRef.current = currentTime;
+      
       timeRef.current++;
+      
+      // Limit total particles to prevent lag
+      const maxParticles = isMobileRef.current ? 100 : 200;
+      if (particlesRef.current.length > maxParticles) {
+        particlesRef.current = particlesRef.current.slice(-maxParticles);
+      }
       
       ctx.clearRect(0, 0, width, height);
 
@@ -569,10 +584,10 @@ export function ParticleCanvas() {
         return alive || p.type === 'star';
       });
 
-      // Respawn stars
-      const maxStars = isMobileRef.current ? 15 : 35;
+      // Respawn stars (reduced)
+      const maxStars = isMobileRef.current ? 8 : 20;
       const currentStars = particlesRef.current.filter(p => p.type === 'star').length;
-      if (currentStars < maxStars && Math.random() > 0.97) {
+      if (currentStars < maxStars && Math.random() > 0.98) {
         const star = createAmbientStar(width, height);
         star.y = -20;
         particlesRef.current.push(star);
@@ -588,7 +603,7 @@ export function ParticleCanvas() {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(performance.now());
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);

@@ -72,6 +72,7 @@ export function RhythmVisualization() {
   const noteIdRef = useRef(0);
   const effectIdRef = useRef(0);
   const isMobileRef = useRef(false);
+  const lastFrameTimeRef = useRef(0);
 
   // Create hit effect with particles
   const createHitEffect = useCallback((x: number, y: number, lane: number, color: LaneNote['color'], type: 'tap' | 'flick') => {
@@ -79,11 +80,11 @@ export function RhythmVisualization() {
     const ripples: Ripple[] = [];
     const isMobile = isMobileRef.current;
     
-    // Particle count based on device
-    const particleMultiplier = isMobile ? 0.4 : 1;
+    // Particle count based on device (reduced)
+    const particleMultiplier = isMobile ? 0.3 : 0.6;
 
-    // Create radial burst particles (7-10 fast particles)
-    const burstCount = Math.floor((7 + Math.random() * 3) * particleMultiplier);
+    // Create radial burst particles (reduced count)
+    const burstCount = Math.floor((5 + Math.random() * 2) * particleMultiplier);
     for (let i = 0; i < burstCount; i++) {
       const angle = (i / burstCount) * Math.PI * 2 + Math.random() * 0.3;
       const speed = 5 + Math.random() * 20;
@@ -542,8 +543,16 @@ export function RhythmVisualization() {
       });
     };
 
-    // Main animation loop
-    const animate = () => {
+    // Main animation loop with FPS limiting
+    const animate = (currentTime: number) => {
+      // Limit to 60fps (16.67ms between frames)
+      const deltaTime = currentTime - lastFrameTimeRef.current;
+      if (deltaTime < 16.67) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTimeRef.current = currentTime;
+      
       timeRef.current++;
 
       ctx.clearRect(0, 0, width, height);
@@ -575,7 +584,7 @@ export function RhythmVisualization() {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(performance.now());
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
