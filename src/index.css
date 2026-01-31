@@ -1,0 +1,408 @@
+@import "tailwindcss";
+
+@theme {
+  /* Project Sekai Inspired Color Palette */
+  --color-sekai-cyan: #00D4AA;
+  --color-sekai-pink: #FF6B9D;
+  --color-sekai-purple: #9B5DE5;
+  --color-sekai-blue: #00B4D8;
+  --color-sekai-magenta: #F72585;
+  --color-sekai-yellow: #FFE66D;
+  --color-sekai-gold: #FFD700;
+  
+  /* Dark Theme Base - Deeper for better contrast */
+  --color-bg-primary: #050508;
+  --color-bg-secondary: #0A0A12;
+  --color-bg-card: #12121C;
+  --color-bg-elevated: #1A1A28;
+  
+  /* Text */
+  --color-text-primary: #F8F8FC;
+  --color-text-secondary: #A8A8B8;
+  --color-text-muted: #5A5A70;
+  
+  /* Font */
+  --font-display: 'Inter', system-ui, sans-serif;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-sekai-cyan), var(--color-sekai-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-sekai-pink), var(--color-sekai-magenta));
+}
+
+/* Enhanced glow effects */
+.glow-cyan {
+  box-shadow: 
+    0 0 20px rgba(0, 212, 170, 0.4),
+    0 0 40px rgba(0, 212, 170, 0.2),
+    0 0 80px rgba(0, 212, 170, 0.1),
+    inset 0 0 20px rgba(0, 212, 170, 0.05);
+}
+
+.glow-pink {
+  box-shadow: 
+    0 0 20px rgba(255, 107, 157, 0.4),
+    0 0 40px rgba(255, 107, 157, 0.2),
+    0 0 80px rgba(255, 107, 157, 0.1),
+    inset 0 0 20px rgba(255, 107, 157, 0.05);
+}
+
+.glow-purple {
+  box-shadow: 
+    0 0 20px rgba(155, 93, 229, 0.4),
+    0 0 40px rgba(155, 93, 229, 0.2),
+    0 0 80px rgba(155, 93, 229, 0.1),
+    inset 0 0 20px rgba(155, 93, 229, 0.05);
+}
+
+.glow-gold {
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 0 40px rgba(255, 215, 0, 0.2),
+    0 0 80px rgba(255, 215, 0, 0.1);
+}
+
+/* Animated text gradient */
+.text-gradient {
+  background: linear-gradient(
+    135deg, 
+    var(--color-sekai-cyan) 0%, 
+    var(--color-sekai-purple) 50%, 
+    var(--color-sekai-pink) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-gradient-sekai {
+  background: linear-gradient(135deg, var(--color-sekai-cyan), var(--color-sekai-purple), var(--color-sekai-pink));
+}
+
+/* Enhanced glass morphism */
+.glass {
+  background: rgba(18, 18, 28, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-heavy {
+  background: rgba(18, 18, 28, 0.85);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Rhythm line animation for Project Sekai feel */
+@keyframes rhythm-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.rhythm-line {
+  animation: rhythm-pulse 0.8s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Enhanced shimmer effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Glow text effect */
+.glow-text-cyan {
+  text-shadow: 
+    0 0 10px rgba(0, 212, 170, 0.5),
+    0 0 20px rgba(0, 212, 170, 0.3),
+    0 0 30px rgba(0, 212, 170, 0.2);
+}
+
+.glow-text-pink {
+  text-shadow: 
+    0 0 10px rgba(255, 107, 157, 0.5),
+    0 0 20px rgba(255, 107, 157, 0.3),
+    0 0 30px rgba(255, 107, 157, 0.2);
+}
+
+.glow-text-purple {
+  text-shadow: 
+    0 0 10px rgba(155, 93, 229, 0.5),
+    0 0 20px rgba(155, 93, 229, 0.3),
+    0 0 30px rgba(155, 93, 229, 0.2);
+}
+
+/* Neon border */
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--color-sekai-cyan),
+    var(--color-sekai-purple),
+    var(--color-sekai-pink),
+    var(--color-sekai-cyan)
+  );
+  background-size: 300% 300%;
+  animation: gradient-rotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(8px);
+}
+
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Beat pulse animation */
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-beat {
+  animation: beat 0.6s ease-in-out infinite;
+}
+
+/* Scan line effect */
+@keyframes scan {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-sekai-cyan),
+    transparent
+  );
+  animation: scan 3s linear infinite;
+  opacity: 0.5;
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 170, 0.1) 0%,
+    rgba(155, 93, 229, 0.1) 25%,
+    rgba(255, 107, 157, 0.1) 50%,
+    rgba(0, 180, 216, 0.1) 75%,
+    rgba(0, 212, 170, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: holographic-shift 8s ease infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* Selection colors */
+::selection {
+  background: rgba(155, 93, 229, 0.4);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(155, 93, 229, 0.4);
+  color: white;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce blur effects on mobile for performance */
+  .glass {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .glass-heavy {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+  
+  /* Simplify neon border on mobile */
+  .neon-border::before {
+    filter: blur(4px);
+    opacity: 0.5;
+  }
+  
+  /* Reduce glow effects on mobile */
+  .glow-cyan,
+  .glow-pink,
+  .glow-purple,
+  .glow-gold {
+    box-shadow: 
+      0 0 10px rgba(155, 93, 229, 0.2),
+      0 0 20px rgba(155, 93, 229, 0.1);
+  }
+  
+  /* Simpler text glow on mobile */
+  .glow-text-cyan,
+  .glow-text-pink,
+  .glow-text-purple {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  /* Disable scan line on mobile */
+  .scan-line::after {
+    display: none;
+  }
+  
+  /* Simpler holographic effect */
+  .holographic {
+    background-size: 200% 200%;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Disable hover-only effects */
+  .group:hover .group-hover\\:opacity-100 {
+    opacity: 0;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .text-gradient {
+    animation: none;
+  }
+  
+  .holographic {
+    animation: none;
+  }
+}
+
+/* Safe area padding for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Improve scrolling performance */
+html {
+  -webkit-overflow-scrolling: touch;
+}
