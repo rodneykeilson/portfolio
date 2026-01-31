@@ -70,76 +70,49 @@ const skillCategories: SkillCategory[] = [
 
 const colorStyles = {
   cyan: {
-    gradient: 'from-sekai-cyan/20 to-sekai-cyan/5',
-    border: 'border-sekai-cyan/30',
-    text: 'text-sekai-cyan',
+    gradient: 'from-[var(--color-sekai-cyan)]/20 to-[var(--color-sekai-cyan)]/5',
+    border: 'border-[var(--color-sekai-cyan)]/30',
+    text: 'text-[var(--color-sekai-cyan)]',
     glow: 'group-hover:shadow-[0_0_30px_rgba(0,212,170,0.15)]',
-    pill: 'bg-sekai-cyan/10 hover:bg-sekai-cyan/20 border-sekai-cyan/20',
+    pill: 'bg-[var(--color-sekai-cyan)]/10 hover:bg-[var(--color-sekai-cyan)]/20 border-[var(--color-sekai-cyan)]/20',
   },
   pink: {
-    gradient: 'from-sekai-pink/20 to-sekai-pink/5',
-    border: 'border-sekai-pink/30',
-    text: 'text-sekai-pink',
+    gradient: 'from-[var(--color-sekai-pink)]/20 to-[var(--color-sekai-pink)]/5',
+    border: 'border-[var(--color-sekai-pink)]/30',
+    text: 'text-[var(--color-sekai-pink)]',
     glow: 'group-hover:shadow-[0_0_30px_rgba(255,107,157,0.15)]',
-    pill: 'bg-sekai-pink/10 hover:bg-sekai-pink/20 border-sekai-pink/20',
+    pill: 'bg-[var(--color-sekai-pink)]/10 hover:bg-[var(--color-sekai-pink)]/20 border-[var(--color-sekai-pink)]/20',
   },
   purple: {
-    gradient: 'from-sekai-purple/20 to-sekai-purple/5',
-    border: 'border-sekai-purple/30',
-    text: 'text-sekai-purple',
+    gradient: 'from-[var(--color-sekai-purple)]/20 to-[var(--color-sekai-purple)]/5',
+    border: 'border-[var(--color-sekai-purple)]/30',
+    text: 'text-[var(--color-sekai-purple)]',
     glow: 'group-hover:shadow-[0_0_30px_rgba(155,93,229,0.15)]',
-    pill: 'bg-sekai-purple/10 hover:bg-sekai-purple/20 border-sekai-purple/20',
+    pill: 'bg-[var(--color-sekai-purple)]/10 hover:bg-[var(--color-sekai-purple)]/20 border-[var(--color-sekai-purple)]/20',
   },
   blue: {
-    gradient: 'from-sekai-blue/20 to-sekai-blue/5',
-    border: 'border-sekai-blue/30',
-    text: 'text-sekai-blue',
+    gradient: 'from-[var(--color-sekai-blue)]/20 to-[var(--color-sekai-blue)]/5',
+    border: 'border-[var(--color-sekai-blue)]/30',
+    text: 'text-[var(--color-sekai-blue)]',
     glow: 'group-hover:shadow-[0_0_30px_rgba(0,180,216,0.15)]',
-    pill: 'bg-sekai-blue/10 hover:bg-sekai-blue/20 border-sekai-blue/20',
+    pill: 'bg-[var(--color-sekai-blue)]/10 hover:bg-[var(--color-sekai-blue)]/20 border-[var(--color-sekai-blue)]/20',
   },
+};
+
+// Japanese category names
+const categoryNamesJp: Record<string, string> = {
+  'Languages': 'プログラミング言語',
+  'Frontend': 'フロントエンド',
+  'Backend & ML': 'バックエンド・機械学習',
+  'Tools & Platforms': 'ツール・プラットフォーム',
 };
 
 export function Skills() {
   return (
     <section id="skills" className="py-32 px-4 relative overflow-hidden">
-      {/* Background accents */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full opacity-5"
-          style={{
-            background: 'radial-gradient(circle, #00D4AA 0%, transparent 70%)',
-            left: '-15%',
-            top: '20%',
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full opacity-5"
-          style={{
-            background: 'radial-gradient(circle, #FF6B9D 0%, transparent 70%)',
-            right: '-10%',
-            bottom: '10%',
-          }}
-          animate={{
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section header */}
+        {/* Section header - SEKAI style */}
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -154,13 +127,19 @@ export function Skills() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <Code2 className="w-4 h-4 text-sekai-cyan" />
-            <span className="text-sm text-text-secondary">Technical Arsenal</span>
+            <Code2 className="w-4 h-4 text-[var(--color-sekai-cyan)]" />
+            <span className="text-sm text-[var(--color-text-secondary)] font-jp">技術スタック</span>
+            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">TECH STACK</span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          
+          {/* Japanese title */}
+          <h2 className="font-jp text-lg text-[var(--color-sekai-cyan)] tracking-wider mb-2">
+            スキル・技術
+          </h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Skills & Technologies</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-jp">
             The tools and technologies I use to bring ideas to life.
           </p>
         </motion.div>
@@ -173,20 +152,25 @@ export function Skills() {
             return (
               <motion.div
                 key={category.name}
-                className={`group relative p-6 rounded-2xl bg-gradient-to-br ${styles.gradient} border ${styles.border} transition-all duration-500 ${styles.glow}`}
+                className="group relative p-6 rounded-2xl sekai-card"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               >
-                {/* Category header */}
+                {/* Category header with Japanese */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-lg bg-bg-elevated`}>
+                  <div className={`p-2 rounded-lg bg-[var(--color-bg-elevated)]`}>
                     <Sparkles className={`w-5 h-5 ${styles.text}`} />
                   </div>
-                  <h3 className={`text-xl font-bold ${styles.text}`}>
-                    {category.name}
-                  </h3>
+                  <div className="flex flex-col">
+                    <h3 className={`text-lg font-bold font-display ${styles.text}`}>
+                      {category.name}
+                    </h3>
+                    <span className="text-[9px] font-en tracking-wider text-[var(--color-text-muted)] uppercase">
+                      {categoryNamesJp[category.name]}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Skills pills */}
@@ -194,7 +178,7 @@ export function Skills() {
                   {category.skills.map((skill, skillIndex) => (
                     <motion.span
                       key={skill.name}
-                      className={`px-4 py-2 rounded-full text-sm font-medium border ${styles.pill} text-text-primary transition-all duration-300 cursor-default`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium border ${styles.pill} text-[var(--color-text-primary)] transition-all duration-300 cursor-default font-jp`}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
@@ -202,27 +186,12 @@ export function Skills() {
                         duration: 0.3,
                         delay: categoryIndex * 0.1 + skillIndex * 0.05,
                       }}
-                      whileHover={{ scale: 1.05, y: -2 }}
                     >
                       {skill.name}
                     </motion.span>
                   ))}
                 </div>
 
-                {/* Decorative element */}
-                <div
-                  className="absolute -top-1 -right-1 w-16 h-16 opacity-20 blur-xl"
-                  style={{
-                    background:
-                      category.color === 'cyan'
-                        ? '#00D4AA'
-                        : category.color === 'pink'
-                        ? '#FF6B9D'
-                        : category.color === 'purple'
-                        ? '#9B5DE5'
-                        : '#00B4D8',
-                  }}
-                />
               </motion.div>
             );
           })}
@@ -236,8 +205,11 @@ export function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-text-muted">
+          <p className="text-[var(--color-text-muted)] font-jp">
             Always exploring new technologies and pushing creative boundaries.
+          </p>
+          <p className="text-[10px] font-en tracking-wider text-[var(--color-text-muted)] uppercase mt-1 opacity-60">
+            常に新しい技術を探求し、創造性の限界に挑戦しています
           </p>
         </motion.div>
       </div>

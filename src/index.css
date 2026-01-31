@@ -1,400 +1,727 @@
 @import "tailwindcss";
 
+/* 
+ * Fonts loaded via index.html:
+ * - Zen Kaku Gothic New (Japanese - primary SEKAI font)
+ * - M PLUS 1p (Japanese - secondary)
+ * - Outfit (Display headings)
+ * - Inter (English body text)
+ */
+
+/* 
+ * ============================================================================
+ * PROJECT SEKAI: COLORFUL STAGE - DESIGN SYSTEM
+ * 
+ * Authentic SEKAI aesthetic with:
+ * - Japanese + English typography (dual-language buttons)
+ * - Trapezoid buttons with clip-path (iconic shape)
+ * - L-shaped corner accents on cards
+ * - Magical void backgrounds
+ * - Subtle, layered glows
+ * - Hexagonal patterns & geometric shapes
+ * ============================================================================
+ */
+
 @theme {
-  /* Project Sekai Inspired Color Palette */
+  /* === Brand Colors === */
   --color-sekai-cyan: #00D4AA;
+  --color-sekai-cyan-glow: #00FFD0;
   --color-sekai-pink: #FF6B9D;
+  --color-sekai-pink-glow: #FF4D88;
   --color-sekai-purple: #9B5DE5;
+  --color-sekai-purple-glow: #B47EEF;
   --color-sekai-blue: #00B4D8;
-  --color-sekai-magenta: #F72585;
-  --color-sekai-yellow: #FFE66D;
-  --color-sekai-gold: #FFD700;
-  
-  /* Dark Theme Base - Deeper for better contrast */
-  --color-bg-primary: #050508;
-  --color-bg-secondary: #0A0A12;
-  --color-bg-card: #12121C;
-  --color-bg-elevated: #1A1A28;
-  
-  /* Text */
-  --color-text-primary: #F8F8FC;
-  --color-text-secondary: #A8A8B8;
-  --color-text-muted: #5A5A70;
-  
-  /* Font */
-  --font-display: 'Inter', system-ui, sans-serif;
+  --color-sekai-yellow: #FFD93D;
+
+  /* === Unit Colors (for potential use) === */
+  --color-unit-leoneed: #4A6EE0;
+  --color-unit-mmj: #88DD44;
+  --color-unit-vbs: #EE6666;
+  --color-unit-wxs: #FFCC11;
+  --color-unit-n25: #884499;
+  --color-unit-vs: #33CCBB;
+
+  /* === Background Layers - The Void === */
+  --color-bg-void: #050508;
+  --color-bg-primary: #0A0A12;
+  --color-bg-secondary: #0F0F1A;
+  --color-bg-card: #141420;
+  --color-bg-elevated: #1A1A2E;
+  --color-bg-hover: #1E1E35;
+
+  /* === Glass/Transparency === */
+  --color-glass-bg: rgba(20, 20, 32, 0.7);
+  --color-glass-bg-dark: rgba(15, 15, 26, 0.85);
+  --color-glass-border: rgba(255, 255, 255, 0.06);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.12);
+  --color-glass-border-active: rgba(0, 212, 170, 0.3);
+
+  /* === Text Hierarchy === */
+  --color-text-primary: #F5F5FF;
+  --color-text-secondary: #A0A0B8;
+  --color-text-muted: #606080;
+  --color-text-disabled: #404055;
+  --color-text-accent: #00D4AA;
+
+  /* === Typography === */
+  --font-jp: 'Zen Kaku Gothic New', 'M PLUS 1p', 'Noto Sans JP', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Exo 2', system-ui, sans-serif;
+  --font-en: 'Inter', 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* === Transitions === */
+  --ease-sekai: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Global Styles */
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-bg-primary);
+  background: var(--color-bg-void);
   color: var(--color-text-primary);
-  font-family: var(--font-display);
+  font-family: var(--font-jp);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Headings - Display font for impact */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Minimal scrollbar with SEKAI accent */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-sekai-cyan), var(--color-sekai-purple));
-  border-radius: 4px;
+  background: rgba(0, 212, 170, 0.3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-sekai-pink), var(--color-sekai-magenta));
+  background: rgba(0, 212, 170, 0.5);
 }
 
-/* Enhanced glow effects */
+/* Selection */
+::selection {
+  background: rgba(0, 212, 170, 0.3);
+  color: white;
+}
+
+/* ============================================================================
+   KEYFRAME ANIMATIONS
+   ============================================================================ */
+
+@keyframes sekai-fade-in-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes sekai-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sekai-glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes sekai-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes sekai-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes sekai-border-glow {
+  0%, 100% { border-color: rgba(0, 212, 170, 0.3); }
+  50% { border-color: rgba(0, 212, 170, 0.6); }
+}
+
+@keyframes sekai-scan-line {
+  0% { left: -10%; }
+  100% { left: 110%; }
+}
+
+@keyframes particle-float {
+  0% { 
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translateY(-100vh) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: sekai-fade-in-up 0.6s var(--ease-sekai) forwards;
+}
+
+.animate-float {
+  animation: sekai-float 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: sekai-glow-pulse 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================================ */
+
+.font-jp { font-family: var(--font-jp); }
+.font-display { font-family: var(--font-display); }
+.font-en { font-family: var(--font-en); }
+
+/* Japanese text style - for button labels */
+.text-jp {
+  font-family: var(--font-jp);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* English subtitle style - for button labels */
+.text-en {
+  font-family: var(--font-en);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Gradient text - SEKAI signature */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-sekai-cyan) 0%, var(--color-sekai-blue) 50%, var(--color-sekai-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, var(--color-sekai-pink) 0%, var(--color-sekai-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Text glow effects */
+.text-glow-cyan {
+  text-shadow: 
+    0 0 10px rgba(0, 212, 170, 0.5),
+    0 0 20px rgba(0, 212, 170, 0.3),
+    0 0 40px rgba(0, 212, 170, 0.15);
+}
+
+.text-glow-pink {
+  text-shadow: 
+    0 0 10px rgba(255, 107, 157, 0.5),
+    0 0 20px rgba(255, 107, 157, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 
+    0 0 10px rgba(155, 93, 229, 0.5),
+    0 0 20px rgba(155, 93, 229, 0.3);
+}
+
+/* ============================================================================
+   GLOW EFFECTS
+   ============================================================================ */
+
 .glow-cyan {
   box-shadow: 
-    0 0 20px rgba(0, 212, 170, 0.4),
-    0 0 40px rgba(0, 212, 170, 0.2),
-    0 0 80px rgba(0, 212, 170, 0.1),
-    inset 0 0 20px rgba(0, 212, 170, 0.05);
+    0 0 20px rgba(0, 212, 170, 0.15),
+    0 0 40px rgba(0, 212, 170, 0.08);
+}
+
+.glow-cyan-strong {
+  box-shadow: 
+    0 0 30px rgba(0, 212, 170, 0.25),
+    0 0 60px rgba(0, 212, 170, 0.15);
 }
 
 .glow-pink {
   box-shadow: 
-    0 0 20px rgba(255, 107, 157, 0.4),
-    0 0 40px rgba(255, 107, 157, 0.2),
-    0 0 80px rgba(255, 107, 157, 0.1),
-    inset 0 0 20px rgba(255, 107, 157, 0.05);
+    0 0 20px rgba(255, 107, 157, 0.15),
+    0 0 40px rgba(255, 107, 157, 0.08);
 }
 
 .glow-purple {
   box-shadow: 
-    0 0 20px rgba(155, 93, 229, 0.4),
-    0 0 40px rgba(155, 93, 229, 0.2),
-    0 0 80px rgba(155, 93, 229, 0.1),
-    inset 0 0 20px rgba(155, 93, 229, 0.05);
+    0 0 20px rgba(155, 93, 229, 0.15),
+    0 0 40px rgba(155, 93, 229, 0.08);
 }
 
-.glow-gold {
-  box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.4),
-    0 0 40px rgba(255, 215, 0, 0.2),
-    0 0 80px rgba(255, 215, 0, 0.1);
+.glow-multi {
+  box-shadow:
+    0 0 30px rgba(0, 212, 170, 0.15),
+    0 0 60px rgba(155, 93, 229, 0.1),
+    0 0 90px rgba(255, 107, 157, 0.08);
 }
 
-/* Animated text gradient */
-.text-gradient {
-  background: linear-gradient(
-    135deg, 
-    var(--color-sekai-cyan) 0%, 
-    var(--color-sekai-purple) 50%, 
-    var(--color-sekai-pink) 100%
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 5s ease infinite;
-}
+/* ============================================================================
+   GLASS MORPHISM
+   ============================================================================ */
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.bg-gradient-sekai {
-  background: linear-gradient(135deg, var(--color-sekai-cyan), var(--color-sekai-purple), var(--color-sekai-pink));
-}
-
-/* Enhanced glass morphism */
 .glass {
-  background: rgba(18, 18, 28, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
 }
 
-.glass-heavy {
-  background: rgba(18, 18, 28, 0.85);
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.glass-dark {
+  background: var(--color-glass-bg-dark);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
 }
 
-/* Rhythm line animation for Project Sekai feel */
-@keyframes rhythm-pulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
+.glass:hover,
+.glass-dark:hover {
+  border-color: var(--color-glass-border-hover);
 }
 
-.rhythm-line {
-  animation: rhythm-pulse 0.8s ease-in-out infinite;
+.glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(20, 20, 32, 0.6) 0%,
+    rgba(15, 15, 26, 0.8) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  transition: all 0.3s var(--ease-sekai);
 }
 
-/* Floating animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.glass-card:hover {
+  border-color: var(--color-glass-border-hover);
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* ============================================================================
+   SEKAI CARD - L-shaped corner accents (Signature look)
+   ============================================================================ */
+
+.sekai-card {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 20, 32, 0.7) 0%,
+    rgba(10, 10, 18, 0.85) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 16px;
+  transition: all 0.3s var(--ease-sekai);
 }
 
-/* Enhanced shimmer effect */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+/* Top-left L-corner */
+.sekai-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 28px;
+  height: 28px;
+  border-top: 2px solid var(--color-sekai-cyan);
+  border-left: 2px solid var(--color-sekai-cyan);
+  border-radius: 16px 0 0 0;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-sekai);
 }
 
-.shimmer {
+/* Bottom-right L-corner */
+.sekai-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 28px;
+  height: 28px;
+  border-bottom: 2px solid var(--color-sekai-cyan);
+  border-right: 2px solid var(--color-sekai-cyan);
+  border-radius: 0 0 16px 0;
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-sekai);
+}
+
+.sekai-card:hover {
+  border-color: var(--color-glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.sekai-card:hover::before,
+.sekai-card:hover::after {
+  opacity: 0.8;
+}
+
+/* Pink variant */
+.sekai-card-pink::before,
+.sekai-card-pink::after {
+  border-color: var(--color-sekai-pink);
+}
+
+/* Purple variant */
+.sekai-card-purple::before,
+.sekai-card-purple::after {
+  border-color: var(--color-sekai-purple);
+}
+
+/* ============================================================================
+   SEKAI TRAPEZOID BUTTON (The iconic style)
+   Japanese text on top, English subtitle below
+   ============================================================================ */
+
+.btn-sekai {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 14px 36px;
+  min-width: 170px;
+  background: var(--color-glass-bg-dark);
+  border: 1px solid var(--color-glass-border);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-sekai);
   position: relative;
   overflow: hidden;
 }
 
-.shimmer::after {
+.btn-sekai::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: shimmer 2s infinite;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-sekai);
 }
 
-/* Glow text effect */
-.glow-text-cyan {
-  text-shadow: 
-    0 0 10px rgba(0, 212, 170, 0.5),
-    0 0 20px rgba(0, 212, 170, 0.3),
-    0 0 30px rgba(0, 212, 170, 0.2);
+.btn-sekai:hover::before {
+  transform: translateX(100%);
 }
 
-.glow-text-pink {
-  text-shadow: 
-    0 0 10px rgba(255, 107, 157, 0.5),
-    0 0 20px rgba(255, 107, 157, 0.3),
-    0 0 30px rgba(255, 107, 157, 0.2);
+.btn-sekai:hover {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: var(--color-sekai-cyan);
+  box-shadow: 0 0 30px rgba(0, 212, 170, 0.2);
 }
 
-.glow-text-purple {
-  text-shadow: 
-    0 0 10px rgba(155, 93, 229, 0.5),
-    0 0 20px rgba(155, 93, 229, 0.3),
-    0 0 30px rgba(155, 93, 229, 0.2);
+.btn-sekai__jp {
+  font-family: var(--font-jp);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  transition: color 0.25s var(--ease-sekai);
 }
 
-/* Neon border */
-.neon-border {
+.btn-sekai__en {
+  font-family: var(--font-en);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 0.25s var(--ease-sekai);
+}
+
+.btn-sekai:hover .btn-sekai__jp {
+  color: var(--color-sekai-cyan);
+}
+
+.btn-sekai:hover .btn-sekai__en {
+  color: var(--color-text-secondary);
+}
+
+/* Pink variant */
+.btn-sekai-pink:hover {
+  background: rgba(255, 107, 157, 0.1);
+  border-color: var(--color-sekai-pink);
+  box-shadow: 0 0 30px rgba(255, 107, 157, 0.2);
+}
+
+.btn-sekai-pink:hover .btn-sekai__jp {
+  color: var(--color-sekai-pink);
+}
+
+/* Purple variant */
+.btn-sekai-purple:hover {
+  background: rgba(155, 93, 229, 0.1);
+  border-color: var(--color-sekai-purple);
+  box-shadow: 0 0 30px rgba(155, 93, 229, 0.2);
+}
+
+.btn-sekai-purple:hover .btn-sekai__jp {
+  color: var(--color-sekai-purple);
+}
+
+/* ============================================================================
+   STANDARD BUTTONS
+   ============================================================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--color-sekai-cyan) 0%, #00A888 100%);
+  color: var(--color-bg-primary);
+  font-family: var(--font-jp);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-sekai);
+  box-shadow: 0 4px 20px rgba(0, 212, 170, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 212, 170, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--color-sekai-cyan);
+  font-family: var(--font-jp);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-sekai);
+}
+
+.btn-ghost:hover {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.5);
+}
+
+/* ============================================================================
+   HEXAGON PATTERN (SEKAI geometric motif)
+   ============================================================================ */
+
+.pattern-hex {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='rgba(0,212,170,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 52px;
+}
+
+.pattern-dots {
+  background-image: radial-gradient(circle, rgba(0, 212, 170, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.pattern-grid {
+  background-image: 
+    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ============================================================================
+   DECORATIVE ELEMENTS
+   ============================================================================ */
+
+/* Diagonal accent line */
+.accent-line {
   position: relative;
 }
 
-.neon-border::before {
+.accent-line::after {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    var(--color-sekai-cyan),
-    var(--color-sekai-purple),
-    var(--color-sekai-pink),
-    var(--color-sekai-cyan)
-  );
-  background-size: 300% 300%;
-  animation: gradient-rotate 4s linear infinite;
-  z-index: -1;
-  opacity: 0.7;
-  filter: blur(8px);
-}
-
-@keyframes gradient-rotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Beat pulse animation */
-@keyframes beat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.05);
-  }
-}
-
-.animate-beat {
-  animation: beat 0.6s ease-in-out infinite;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sekai-cyan) 0%, transparent 100%);
+  border-radius: 2px;
 }
 
 /* Scan line effect */
-@keyframes scan {
-  0% {
-    top: -100%;
-  }
-  100% {
-    top: 100%;
-  }
+.scan-line {
+  position: relative;
+  overflow: hidden;
 }
 
 .scan-line::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-sekai-cyan),
-    transparent
-  );
-  animation: scan 3s linear infinite;
-  opacity: 0.5;
+  top: 0;
+  left: -10%;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.1), transparent);
+  animation: sekai-scan-line 4s ease-in-out infinite;
 }
 
-/* Holographic effect */
-.holographic {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 212, 170, 0.1) 0%,
-    rgba(155, 93, 229, 0.1) 25%,
-    rgba(255, 107, 157, 0.1) 50%,
-    rgba(0, 180, 216, 0.1) 75%,
-    rgba(0, 212, 170, 0.1) 100%
-  );
-  background-size: 400% 400%;
-  animation: holographic-shift 8s ease infinite;
+/* Rhombus/Diamond shape */
+.diamond {
+  width: 12px;
+  height: 12px;
+  background: var(--color-sekai-cyan);
+  transform: rotate(45deg);
+  opacity: 0.6;
 }
 
-@keyframes holographic-shift {
-  0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 100% 50%; }
-  50% { background-position: 100% 100%; }
-  75% { background-position: 0% 100%; }
+/* Small hexagon decoration */
+.hex-small {
+  width: 20px;
+  height: 11.5px;
+  background: rgba(0, 212, 170, 0.2);
+  position: relative;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
-/* Selection colors */
-::selection {
-  background: rgba(155, 93, 229, 0.4);
-  color: white;
+/* ============================================================================
+   BADGE STYLES
+   ============================================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-sekai-cyan);
 }
 
-::-moz-selection {
-  background: rgba(155, 93, 229, 0.4);
-  color: white;
+.badge-pink {
+  background: rgba(255, 107, 157, 0.1);
+  border-color: rgba(255, 107, 157, 0.2);
+  color: var(--color-sekai-pink);
 }
 
-/* Mobile-specific optimizations */
+.badge-purple {
+  background: rgba(155, 93, 229, 0.1);
+  border-color: rgba(155, 93, 229, 0.2);
+  color: var(--color-sekai-purple);
+}
+
+/* ============================================================================
+   INPUT STYLES
+   ============================================================================ */
+
+.input-sekai {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(15, 15, 26, 0.8);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 10px;
+  color: var(--color-text-primary);
+  font-family: var(--font-jp);
+  font-size: 0.875rem;
+  transition: all 0.3s var(--ease-sekai);
+  outline: none;
+}
+
+.input-sekai::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input-sekai:focus {
+  border-color: rgba(0, 212, 170, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+}
+
+/* ============================================================================
+   RESPONSIVE & ACCESSIBILITY
+   ============================================================================ */
+
 @media (max-width: 768px) {
-  /* Reduce blur effects on mobile for performance */
-  .glass {
+  .glass,
+  .glass-dark,
+  .sekai-card,
+  .glass-card {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
   
-  .glass-heavy {
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+  .btn-sekai {
+    min-width: 140px;
+    padding: 10px 24px;
   }
   
-  /* Simplify neon border on mobile */
-  .neon-border::before {
-    filter: blur(4px);
-    opacity: 0.5;
-  }
-  
-  /* Reduce glow effects on mobile */
-  .glow-cyan,
-  .glow-pink,
-  .glow-purple,
-  .glow-gold {
-    box-shadow: 
-      0 0 10px rgba(155, 93, 229, 0.2),
-      0 0 20px rgba(155, 93, 229, 0.1);
-  }
-  
-  /* Simpler text glow on mobile */
-  .glow-text-cyan,
-  .glow-text-pink,
-  .glow-text-purple {
-    text-shadow: 0 0 10px currentColor;
-  }
-  
-  /* Disable scan line on mobile */
-  .scan-line::after {
-    display: none;
-  }
-  
-  /* Simpler holographic effect */
-  .holographic {
-    background-size: 200% 200%;
+  .sekai-card::before,
+  .sekai-card::after {
+    width: 20px;
+    height: 20px;
   }
 }
 
-/* Touch-friendly tap targets */
+/* Touch-friendly */
 @media (hover: none) and (pointer: coarse) {
   a, button {
     min-height: 44px;
-    min-width: 44px;
-  }
-  
-  /* Disable hover-only effects */
-  .group:hover .group-hover\\:opacity-100 {
-    opacity: 0;
   }
 }
 
-/* Reduce motion for users who prefer it */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
-  .text-gradient {
-    animation: none;
-  }
-  
-  .holographic {
-    animation: none;
-  }
 }
 
-/* Safe area padding for notched devices */
+/* Safe area for notched devices */
 @supports (padding: max(0px)) {
   body {
     padding-left: max(0px, env(safe-area-inset-left));
@@ -402,24 +729,7 @@ body {
   }
 }
 
-/* Improve scrolling performance */
-html {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Performance optimizations */
+/* Performance */
 canvas {
   will-change: auto;
-}
-
-/* Optimize animations that run continuously */
-.text-gradient,
-.holographic {
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  [data-animated="true"] {
-    will-change: transform;
-  }
 }

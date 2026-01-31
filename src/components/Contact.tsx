@@ -1,22 +1,13 @@
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Send, ArrowUpRight } from 'lucide-react';
+import { SekaiButton } from './SekaiButton';
 
 export function Contact() {
   return (
     <section id="contact" className="py-32 px-4 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute w-full h-full opacity-5"
-          style={{
-            background:
-              'linear-gradient(180deg, transparent 0%, #9B5DE5 50%, transparent 100%)',
-          }}
-        />
-      </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Section header */}
+        {/* Section header - SEKAI style */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -31,13 +22,19 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <Send className="w-4 h-4 text-sekai-purple" />
-            <span className="text-sm text-text-secondary">Let's Connect</span>
+            <Send className="w-4 h-4 text-[var(--color-sekai-purple)]" />
+            <span className="text-sm text-[var(--color-text-secondary)] font-jp">お問い合わせ</span>
+            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">CONTACT</span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          
+          {/* Japanese title */}
+          <h2 className="font-jp text-lg text-[var(--color-sekai-purple)] tracking-wider mb-2">
+            連絡先
+          </h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Get In Touch</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-xl mx-auto">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl mx-auto font-jp">
             Have a project in mind or just want to say hi? Feel free to reach out!
           </p>
         </motion.div>
@@ -46,18 +43,18 @@ export function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <motion.a
             href="mailto:keilsonrodney0710@gmail.com"
-            className="group p-6 rounded-2xl glass border border-white/5 hover:border-sekai-cyan/50 transition-all duration-500 hover:glow-cyan text-center"
+            className="group p-6 rounded-2xl sekai-card text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            whileHover={{ y: -8 }}
           >
-            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-sekai-cyan/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Mail className="w-7 h-7 text-sekai-cyan" />
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[var(--color-sekai-cyan)]/10 flex items-center justify-center">
+              <Mail className="w-7 h-7 text-[var(--color-sekai-cyan)]" />
             </div>
-            <h3 className="font-bold text-lg text-text-primary mb-2">Email</h3>
-            <p className="text-sm text-text-muted group-hover:text-sekai-cyan transition-colors">
+            <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">Email</h3>
+            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">メール</p>
+            <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-cyan)] transition-colors font-en">
               keilsonrodney0710@gmail.com
             </p>
           </motion.a>
@@ -66,18 +63,18 @@ export function Contact() {
             href="https://github.com/rodneykeilson"
             target="_blank"
             rel="noopener noreferrer"
-            className="group p-6 rounded-2xl glass border border-white/5 hover:border-sekai-pink/50 transition-all duration-500 hover:glow-pink text-center"
+            className="group p-6 rounded-2xl sekai-card sekai-card-pink text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            whileHover={{ y: -8 }}
           >
-            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-sekai-pink/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Github className="w-7 h-7 text-sekai-pink" />
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[var(--color-sekai-pink)]/10 flex items-center justify-center">
+              <Github className="w-7 h-7 text-[var(--color-sekai-pink)]" />
             </div>
-            <h3 className="font-bold text-lg text-text-primary mb-2">GitHub</h3>
-            <p className="text-sm text-text-muted group-hover:text-sekai-pink transition-colors flex items-center justify-center gap-1">
+            <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">GitHub</h3>
+            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">ギットハブ</p>
+            <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-pink)] transition-colors flex items-center justify-center gap-1 font-en">
               @rodneykeilson <ArrowUpRight className="w-3 h-3" />
             </p>
           </motion.a>
@@ -86,24 +83,24 @@ export function Contact() {
             href="https://linkedin.com/in/rodneykeilson"
             target="_blank"
             rel="noopener noreferrer"
-            className="group p-6 rounded-2xl glass border border-white/5 hover:border-sekai-purple/50 transition-all duration-500 hover:glow-purple text-center"
+            className="group p-6 rounded-2xl sekai-card sekai-card-purple text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ y: -8 }}
           >
-            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-sekai-purple/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Linkedin className="w-7 h-7 text-sekai-purple" />
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[var(--color-sekai-purple)]/10 flex items-center justify-center">
+              <Linkedin className="w-7 h-7 text-[var(--color-sekai-purple)]" />
             </div>
-            <h3 className="font-bold text-lg text-text-primary mb-2">LinkedIn</h3>
-            <p className="text-sm text-text-muted group-hover:text-sekai-purple transition-colors flex items-center justify-center gap-1">
+            <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">LinkedIn</h3>
+            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">リンクトイン</p>
+            <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-purple)] transition-colors flex items-center justify-center gap-1 font-en">
               Connect with me <ArrowUpRight className="w-3 h-3" />
             </p>
           </motion.a>
         </div>
 
-        {/* CTA */}
+        {/* CTA - SEKAI button */}
         <motion.div
           className="text-center"
           initial={{ opacity: 0 }}
@@ -111,13 +108,12 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a
-            href="mailto:keilsonrodney0710@gmail.com"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-sekai text-bg-primary font-semibold rounded-full hover:scale-105 transition-transform duration-300 shadow-lg"
-          >
-            <Mail className="w-5 h-5" />
-            Send Me a Message
-          </a>
+          <SekaiButton
+            japanese="メッセージを送る"
+            english="SEND MESSAGE"
+            variant="purple"
+            onClick={() => window.location.href = 'mailto:keilsonrodney0710@gmail.com'}
+          />
         </motion.div>
       </div>
     </section>

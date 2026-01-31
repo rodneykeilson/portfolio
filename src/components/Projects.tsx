@@ -137,22 +137,25 @@ const categoryLabels = {
 
 const colorClasses = {
   cyan: {
-    border: 'hover:border-sekai-cyan/50',
+    border: 'hover:border-[var(--color-sekai-cyan)]/50',
     glow: 'group-hover:glow-cyan',
-    text: 'text-sekai-cyan',
-    bg: 'bg-sekai-cyan/10',
+    text: 'text-[var(--color-sekai-cyan)]',
+    bg: 'bg-[var(--color-sekai-cyan)]/10',
+    borderColor: 'var(--color-sekai-cyan)',
   },
   pink: {
-    border: 'hover:border-sekai-pink/50',
+    border: 'hover:border-[var(--color-sekai-pink)]/50',
     glow: 'group-hover:glow-pink',
-    text: 'text-sekai-pink',
-    bg: 'bg-sekai-pink/10',
+    text: 'text-[var(--color-sekai-pink)]',
+    bg: 'bg-[var(--color-sekai-pink)]/10',
+    borderColor: 'var(--color-sekai-pink)',
   },
   purple: {
-    border: 'hover:border-sekai-purple/50',
+    border: 'hover:border-[var(--color-sekai-purple)]/50',
     glow: 'group-hover:glow-purple',
-    text: 'text-sekai-purple',
-    bg: 'bg-sekai-purple/10',
+    text: 'text-[var(--color-sekai-purple)]',
+    bg: 'bg-[var(--color-sekai-purple)]/10',
+    borderColor: 'var(--color-sekai-purple)',
   },
 };
 
@@ -175,7 +178,7 @@ export function Projects() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section header */}
+        {/* Section header - SEKAI style with Japanese */}
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -190,13 +193,19 @@ export function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <Star className="w-4 h-4 text-sekai-yellow" />
-            <span className="text-sm text-text-secondary">Featured Work</span>
+            <Star className="w-4 h-4 text-[var(--color-sekai-yellow)]" />
+            <span className="text-sm text-[var(--color-text-secondary)] font-jp">注目作品</span>
+            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">FEATURED</span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          
+          {/* Japanese title */}
+          <h2 className="font-jp text-lg text-[var(--color-sekai-cyan)] tracking-wider mb-2">
+            プロジェクト
+          </h2>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-jp">
             A collection of my work spanning machine learning, mobile development, web applications, and creative tools.
           </p>
         </motion.div>
@@ -210,16 +219,12 @@ export function Projects() {
             return (
               <motion.article
                 key={project.title}
-                className={`group relative p-6 rounded-2xl glass border border-white/5 ${colors.border} transition-all duration-500`}
+                className="group relative p-6 rounded-2xl sekai-card"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
               >
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 rounded-2xl opacity-0 ${colors.glow} transition-opacity duration-500`} />
-
                 {/* Category badge */}
                 <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${colors.bg} mb-4`}>
                   <IconComponent className={`w-3.5 h-3.5 ${colors.text}`} />
@@ -229,17 +234,17 @@ export function Projects() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-gradient transition-all duration-300">
+                <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-2 group-hover:text-gradient transition-all duration-300 font-display">
                   {project.title}
                 </h3>
 
                 {/* Short description */}
-                <p className="text-text-secondary text-sm mb-4">
+                <p className="text-[var(--color-text-secondary)] text-sm mb-4">
                   {project.description}
                 </p>
 
                 {/* Long description */}
-                <p className="text-text-muted text-sm mb-6 leading-relaxed">
+                <p className="text-[var(--color-text-muted)] text-sm mb-6 leading-relaxed">
                   {project.longDescription}
                 </p>
 
@@ -248,7 +253,7 @@ export function Projects() {
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs rounded-md bg-bg-elevated text-text-secondary"
+                      className="px-2 py-1 text-xs rounded-md bg-[var(--color-bg-elevated)] text-[var(--color-text-secondary)] border border-[var(--color-glass-border)]"
                     >
                       {tech}
                     </span>
@@ -289,8 +294,8 @@ export function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl font-bold mb-8 text-center">
-            <span className="text-text-secondary">More</span>{' '}
+          <h3 className="text-2xl font-bold mb-8 text-center font-display">
+            <span className="text-[var(--color-text-secondary)]">More</span>{' '}
             <span className="text-gradient">Projects</span>
           </h3>
 
@@ -305,25 +310,24 @@ export function Projects() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex items-center gap-4 p-4 rounded-xl glass border border-white/5 ${colors.border} transition-all duration-300`}
+                  className="group flex items-center gap-4 p-4 rounded-xl glass-card hover:border-[var(--color-glass-border-hover)]"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ x: 8 }}
                 >
                   <div className={`p-3 rounded-lg ${colors.bg}`}>
                     <IconComponent className={`w-5 h-5 ${colors.text}`} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-text-primary group-hover:text-gradient transition-all truncate">
+                    <h4 className="font-semibold text-[var(--color-text-primary)] group-hover:text-gradient transition-all truncate font-display">
                       {project.title}
                     </h4>
-                    <p className="text-sm text-text-muted truncate">
+                    <p className="text-sm text-[var(--color-text-muted)] truncate">
                       {project.description}
                     </p>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-text-muted group-hover:text-text-secondary transition-colors flex-shrink-0" />
+                  <ExternalLink className="w-4 h-4 text-[var(--color-text-muted)] group-hover:text-[var(--color-text-secondary)] transition-colors flex-shrink-0" />
                 </motion.a>
               );
             })}
@@ -346,13 +350,14 @@ export function Projects() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <Lock className="w-4 h-4 text-sekai-purple" />
-              <span className="text-sm text-text-secondary">Private Works</span>
+              <Lock className="w-4 h-4 text-[var(--color-sekai-purple)]" />
+              <span className="text-sm text-[var(--color-text-secondary)] font-jp">非公開作品</span>
+              <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">PRIVATE</span>
             </motion.div>
-            <h3 className="text-2xl font-bold mb-3">
+            <h3 className="text-2xl font-bold mb-3 font-display">
               <span className="text-gradient">Behind the Scenes</span>
             </h3>
-            <p className="text-text-muted text-sm max-w-lg mx-auto">
+            <p className="text-[var(--color-text-muted)] text-sm max-w-lg mx-auto">
               A glimpse into proprietary projects and client work. Details are kept confidential, but here's what I've been building.
             </p>
           </div>
@@ -365,12 +370,11 @@ export function Projects() {
               return (
                 <motion.div
                   key={project.title}
-                  className={`group relative p-5 rounded-xl glass border border-white/5 ${colors.border} transition-all duration-300`}
+                  className="group relative p-5 rounded-xl sekai-card"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
-                  whileHover={{ y: -4 }}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`p-3 rounded-lg ${colors.bg} flex-shrink-0`}>
@@ -378,31 +382,28 @@ export function Projects() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-semibold text-text-primary truncate">
+                        <h4 className="font-semibold text-[var(--color-text-primary)] truncate font-display">
                           {project.title}
                         </h4>
-                        <Lock className="w-3 h-3 text-text-muted flex-shrink-0" />
+                        <Lock className="w-3 h-3 text-[var(--color-text-muted)] flex-shrink-0" />
                       </div>
-                      <p className="text-sm text-text-muted leading-relaxed">
+                      <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                         {project.description}
                       </p>
                     </div>
                   </div>
-                  
-                  {/* Subtle shimmer effect */}
-                  <div className="absolute inset-0 rounded-xl shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
               );
             })}
           </div>
 
-          <p className="text-center text-text-muted text-sm mt-8">
-            <Sparkles className="w-4 h-4 inline-block mr-1 text-sekai-yellow" />
-            Interested in similar work? <a href="#contact" className="text-sekai-cyan hover:underline">Let's talk</a>
+          <p className="text-center text-[var(--color-text-muted)] text-sm mt-8 font-jp">
+            <Sparkles className="w-4 h-4 inline-block mr-1 text-[var(--color-sekai-yellow)]" />
+            Interested in similar work? <a href="#contact" className="text-[var(--color-sekai-cyan)] hover:underline">Let's talk</a>
           </p>
         </motion.div>
 
-        {/* View all on GitHub */}
+        {/* View all on GitHub - SEKAI button */}
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0 }}
@@ -414,10 +415,11 @@ export function Projects() {
             href="https://github.com/rodneykeilson?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass border border-white/10 hover:border-sekai-cyan/50 transition-all duration-300 hover:glow-cyan"
+            className="btn-ghost inline-flex items-center gap-2"
           >
             <Github className="w-5 h-5" />
-            <span>View All Repositories</span>
+            <span className="font-jp">すべて見る</span>
+            <span className="text-[9px] font-en tracking-wider uppercase opacity-70">VIEW ALL</span>
             <ExternalLink className="w-4 h-4" />
           </a>
         </motion.div>

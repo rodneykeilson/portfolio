@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Extracted APK assets (do not commit game assets)
+pjsekai-extracted/

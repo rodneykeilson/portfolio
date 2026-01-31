@@ -1,0 +1,1014 @@
+{
+  "meta": {
+    "name": "Project Sekai: Colorful Stage Design System",
+    "version": "1.0.0",
+    "description": "Comprehensive design system recreating the authentic Project Sekai UI aesthetic for portfolio use",
+    "sources": [
+      "Extracted game textures (TopMenuAtlas, CommonAtlas, FrameAtlas, HeaderTitleAtlas)",
+      "Official SEGA/Colorful Palette game UI",
+      "Project Sekai visual identity analysis"
+    ]
+  },
+
+  "typography": {
+    "description": "Project Sekai uses a mix of clean Japanese gothic fonts with geometric display faces. The primary font is FOT-Rodin Pro (Fontworks), a modern humanist sans-serif. For web alternatives, we use fonts with similar characteristics.",
+    
+    "fontFamilies": {
+      "primary": {
+        "name": "FOT-Rodin Pro / UD Kaku Gothic",
+        "description": "The main UI font - clean, modern Japanese gothic with excellent readability",
+        "webAlternatives": [
+          "'Zen Kaku Gothic New'",
+          "'M PLUS 1p'",
+          "'Noto Sans JP'",
+          "'Hiragino Sans'"
+        ],
+        "fallback": "system-ui, -apple-system, sans-serif",
+        "css": "'Zen Kaku Gothic New', 'M PLUS 1p', 'Noto Sans JP', system-ui, sans-serif",
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=M+PLUS+1p:wght@300;400;500;700;800&display=swap"
+      },
+      "display": {
+        "name": "Geometric Display",
+        "description": "Used for large headings, menu titles, and impact text. Slightly condensed, bold weights.",
+        "webAlternatives": [
+          "'Outfit'",
+          "'Exo 2'",
+          "'Orbitron'",
+          "'Rajdhani'"
+        ],
+        "css": "'Outfit', 'Exo 2', system-ui, sans-serif",
+        "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Exo+2:wght@400;500;600;700;800&display=swap"
+      },
+      "english": {
+        "name": "English UI Text",
+        "description": "Used for English labels alongside Japanese text. Clean geometric sans.",
+        "css": "'Inter', 'Outfit', system-ui, sans-serif"
+      }
+    },
+
+    "fontSizes": {
+      "xs": { "size": "0.625rem", "px": "10px", "use": "Tiny labels, timestamps" },
+      "sm": { "size": "0.75rem", "px": "12px", "use": "Small labels, captions" },
+      "base": { "size": "0.875rem", "px": "14px", "use": "Body text, descriptions" },
+      "md": { "size": "1rem", "px": "16px", "use": "Standard UI text" },
+      "lg": { "size": "1.125rem", "px": "18px", "use": "Emphasized text" },
+      "xl": { "size": "1.25rem", "px": "20px", "use": "Section labels" },
+      "2xl": { "size": "1.5rem", "px": "24px", "use": "Card titles" },
+      "3xl": { "size": "2rem", "px": "32px", "use": "Section headers" },
+      "4xl": { "size": "2.5rem", "px": "40px", "use": "Page titles" },
+      "5xl": { "size": "3rem", "px": "48px", "use": "Hero text" },
+      "6xl": { "size": "4rem", "px": "64px", "use": "Display text" }
+    },
+
+    "fontWeights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "black": 900
+    },
+
+    "letterSpacing": {
+      "tighter": "-0.05em",
+      "tight": "-0.025em",
+      "normal": "0",
+      "wide": "0.025em",
+      "wider": "0.05em",
+      "widest": "0.1em",
+      "japanese": "0.05em"
+    },
+
+    "lineHeight": {
+      "none": 1,
+      "tight": 1.25,
+      "snug": 1.375,
+      "normal": 1.5,
+      "relaxed": 1.625,
+      "loose": 2
+    },
+
+    "textStyles": {
+      "menuTitle": {
+        "fontFamily": "display",
+        "fontSize": "1.5rem",
+        "fontWeight": 700,
+        "letterSpacing": "0.02em",
+        "textTransform": "uppercase"
+      },
+      "buttonJapanese": {
+        "fontFamily": "primary",
+        "fontSize": "1rem",
+        "fontWeight": 700,
+        "letterSpacing": "0.05em"
+      },
+      "buttonEnglish": {
+        "fontFamily": "english",
+        "fontSize": "0.625rem",
+        "fontWeight": 500,
+        "letterSpacing": "0.15em",
+        "textTransform": "uppercase"
+      },
+      "cardTitle": {
+        "fontFamily": "primary",
+        "fontSize": "1.25rem",
+        "fontWeight": 700,
+        "letterSpacing": "0.02em"
+      },
+      "bodyText": {
+        "fontFamily": "primary",
+        "fontSize": "0.875rem",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      }
+    }
+  },
+
+  "colors": {
+    "description": "Project Sekai's color palette is based on a dark void background with vibrant cyan as the primary accent, complemented by pink and purple. The game uses color-coded groups for each unit.",
+
+    "brand": {
+      "cyan": {
+        "hex": "#00D4AA",
+        "rgb": "0, 212, 170",
+        "hsl": "168, 100%, 42%",
+        "description": "Primary SEKAI cyan - the signature color. Used for active states, highlights, primary buttons.",
+        "usage": "Primary accent, active states, key CTAs"
+      },
+      "cyanLight": {
+        "hex": "#33E5C4",
+        "rgb": "51, 229, 196",
+        "description": "Lighter cyan for hover states and subtle accents"
+      },
+      "cyanDark": {
+        "hex": "#00A888",
+        "rgb": "0, 168, 136",
+        "description": "Darker cyan for pressed states"
+      },
+      "cyanGlow": {
+        "hex": "#00FFD0",
+        "rgb": "0, 255, 208",
+        "description": "Bright cyan for glow effects"
+      },
+      "pink": {
+        "hex": "#FF6B9D",
+        "rgb": "255, 107, 157",
+        "hsl": "340, 100%, 71%",
+        "description": "Secondary accent - more sparingly used. Energy, excitement, More More Jump! influence.",
+        "usage": "Secondary accent, decorative elements, alerts"
+      },
+      "pinkLight": {
+        "hex": "#FF8FB4",
+        "rgb": "255, 143, 180",
+        "description": "Lighter pink for subtle accents"
+      },
+      "pinkGlow": {
+        "hex": "#FF4D88",
+        "rgb": "255, 77, 136",
+        "description": "Bright pink for glow effects"
+      },
+      "purple": {
+        "hex": "#9B5DE5",
+        "rgb": "155, 93, 229",
+        "hsl": "267, 74%, 63%",
+        "description": "Tertiary accent - Nightcord at 25:00 influence. Mystery, depth.",
+        "usage": "Tertiary accent, special elements"
+      },
+      "purpleLight": {
+        "hex": "#B47EEF",
+        "rgb": "180, 126, 239",
+        "description": "Lighter purple"
+      },
+      "purpleDark": {
+        "hex": "#7B3DC5",
+        "rgb": "123, 61, 197",
+        "description": "Darker purple for depth"
+      },
+      "blue": {
+        "hex": "#00B4D8",
+        "rgb": "0, 180, 216",
+        "description": "Cool blue accent - links, info states",
+        "usage": "Links, informational elements"
+      },
+      "yellow": {
+        "hex": "#FFD93D",
+        "rgb": "255, 217, 61",
+        "description": "Wonderlands x Showtime influence - highlights, stars, achievements",
+        "usage": "Stars, achievements, highlights"
+      },
+      "orange": {
+        "hex": "#FF8C42",
+        "rgb": "255, 140, 66",
+        "description": "Vivid BAD SQUAD influence - energy, action",
+        "usage": "Warnings, energy indicators"
+      }
+    },
+
+    "unitColors": {
+      "description": "Each unit in Project Sekai has a signature color scheme",
+      "leoneed": {
+        "primary": "#4A6EE0",
+        "secondary": "#2D4A9E",
+        "name": "School Blue",
+        "japanese": "レオニ"
+      },
+      "moreMoreJump": {
+        "primary": "#88DD44",
+        "secondary": "#5FB030",
+        "name": "Bright Green",
+        "japanese": "モモジャン"
+      },
+      "vividBadSquad": {
+        "primary": "#EE6666",
+        "secondary": "#CC3333",
+        "name": "Vivid Red",
+        "japanese": "ビビバス"
+      },
+      "wonderlandsShowtime": {
+        "primary": "#FFCC11",
+        "secondary": "#E6A800",
+        "name": "Pop Yellow",
+        "japanese": "ワンダショ"
+      },
+      "nightcord": {
+        "primary": "#884499",
+        "secondary": "#663377",
+        "name": "Dark Purple",
+        "japanese": "ニーゴ"
+      },
+      "virtualSingers": {
+        "primary": "#33CCBB",
+        "secondary": "#22AA99",
+        "name": "Virtual Teal",
+        "japanese": "バチャシン"
+      }
+    },
+
+    "backgrounds": {
+      "void": {
+        "hex": "#050508",
+        "rgb": "5, 5, 8",
+        "description": "The deepest void - main page background, feels like empty SEKAI"
+      },
+      "primary": {
+        "hex": "#0A0A12",
+        "rgb": "10, 10, 18",
+        "description": "Primary dark background"
+      },
+      "secondary": {
+        "hex": "#0F0F1A",
+        "rgb": "15, 15, 26",
+        "description": "Slightly elevated background"
+      },
+      "card": {
+        "hex": "#141420",
+        "rgb": "20, 20, 32",
+        "description": "Card backgrounds"
+      },
+      "elevated": {
+        "hex": "#1A1A2E",
+        "rgb": "26, 26, 46",
+        "description": "Modal, dropdown backgrounds"
+      },
+      "hover": {
+        "hex": "#1E1E35",
+        "rgb": "30, 30, 53",
+        "description": "Hover state backgrounds"
+      }
+    },
+
+    "glass": {
+      "background": "rgba(15, 15, 26, 0.7)",
+      "backgroundLight": "rgba(26, 26, 46, 0.5)",
+      "border": "rgba(255, 255, 255, 0.06)",
+      "borderHover": "rgba(255, 255, 255, 0.12)",
+      "borderActive": "rgba(0, 212, 170, 0.3)"
+    },
+
+    "text": {
+      "primary": {
+        "hex": "#F5F5FF",
+        "rgb": "245, 245, 255",
+        "description": "Primary text - slightly blue-white for that digital feel"
+      },
+      "secondary": {
+        "hex": "#A0A0B8",
+        "rgb": "160, 160, 184",
+        "description": "Secondary text, labels"
+      },
+      "muted": {
+        "hex": "#606080",
+        "rgb": "96, 96, 128",
+        "description": "Muted text, placeholders"
+      },
+      "disabled": {
+        "hex": "#404055",
+        "rgb": "64, 64, 85",
+        "description": "Disabled text"
+      },
+      "inverse": {
+        "hex": "#0A0A12",
+        "rgb": "10, 10, 18",
+        "description": "Text on light backgrounds"
+      }
+    },
+
+    "semantic": {
+      "success": "#00D4AA",
+      "warning": "#FFD93D",
+      "error": "#FF4757",
+      "info": "#00B4D8"
+    },
+
+    "gradients": {
+      "sekaiVoid": {
+        "css": "radial-gradient(ellipse at center, #0F0F1A 0%, #050508 70%)",
+        "description": "The main void gradient - creates depth"
+      },
+      "sekaiGlow": {
+        "css": "radial-gradient(ellipse at 30% 20%, rgba(0, 212, 170, 0.15) 0%, transparent 50%)",
+        "description": "Subtle cyan glow overlay"
+      },
+      "cyanAccent": {
+        "css": "linear-gradient(135deg, #00D4AA 0%, #00A888 100%)",
+        "description": "Primary button gradient"
+      },
+      "pinkPurple": {
+        "css": "linear-gradient(135deg, #FF6B9D 0%, #9B5DE5 100%)",
+        "description": "Decorative accent gradient"
+      },
+      "cardShine": {
+        "css": "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%)",
+        "description": "Subtle shine effect on cards"
+      },
+      "buttonHover": {
+        "css": "linear-gradient(135deg, #33E5C4 0%, #00D4AA 100%)",
+        "description": "Button hover state"
+      },
+      "headerBar": {
+        "css": "linear-gradient(90deg, transparent 0%, rgba(0, 212, 170, 0.1) 50%, transparent 100%)",
+        "description": "Decorative header line"
+      },
+      "textGradient": {
+        "css": "linear-gradient(135deg, #00D4AA 0%, #00B4D8 50%, #9B5DE5 100%)",
+        "description": "Gradient text effect for headings"
+      }
+    }
+  },
+
+  "shadows": {
+    "none": "none",
+    "sm": "0 1px 2px rgba(0, 0, 0, 0.3)",
+    "base": "0 2px 4px rgba(0, 0, 0, 0.4)",
+    "md": "0 4px 8px rgba(0, 0, 0, 0.4)",
+    "lg": "0 8px 16px rgba(0, 0, 0, 0.5)",
+    "xl": "0 16px 32px rgba(0, 0, 0, 0.6)",
+    "2xl": "0 24px 48px rgba(0, 0, 0, 0.7)",
+
+    "glow": {
+      "cyan": {
+        "subtle": "0 0 20px rgba(0, 212, 170, 0.15)",
+        "medium": "0 0 30px rgba(0, 212, 170, 0.25)",
+        "strong": "0 0 40px rgba(0, 212, 170, 0.4)",
+        "intense": "0 0 60px rgba(0, 212, 170, 0.5), 0 0 100px rgba(0, 212, 170, 0.2)"
+      },
+      "pink": {
+        "subtle": "0 0 20px rgba(255, 107, 157, 0.15)",
+        "medium": "0 0 30px rgba(255, 107, 157, 0.25)",
+        "strong": "0 0 40px rgba(255, 107, 157, 0.4)"
+      },
+      "purple": {
+        "subtle": "0 0 20px rgba(155, 93, 229, 0.15)",
+        "medium": "0 0 30px rgba(155, 93, 229, 0.25)",
+        "strong": "0 0 40px rgba(155, 93, 229, 0.4)"
+      },
+      "multi": {
+        "css": "0 0 20px rgba(0, 212, 170, 0.2), 0 0 40px rgba(155, 93, 229, 0.1), 0 0 60px rgba(255, 107, 157, 0.1)"
+      }
+    },
+
+    "inset": {
+      "subtle": "inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+      "border": "inset 0 0 0 1px rgba(255, 255, 255, 0.06)"
+    }
+  },
+
+  "borders": {
+    "width": {
+      "none": "0",
+      "thin": "1px",
+      "base": "2px",
+      "thick": "3px",
+      "accent": "4px"
+    },
+    "radius": {
+      "none": "0",
+      "sm": "4px",
+      "base": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "24px",
+      "2xl": "32px",
+      "full": "9999px",
+      "trapezoid": "8px 24px 24px 8px"
+    },
+    "styles": {
+      "subtle": "1px solid rgba(255, 255, 255, 0.06)",
+      "default": "1px solid rgba(255, 255, 255, 0.1)",
+      "accent": "1px solid rgba(0, 212, 170, 0.3)",
+      "accentStrong": "2px solid rgba(0, 212, 170, 0.5)",
+      "glass": "1px solid rgba(255, 255, 255, 0.08)"
+    }
+  },
+
+  "spacing": {
+    "0": "0",
+    "px": "1px",
+    "0.5": "0.125rem",
+    "1": "0.25rem",
+    "1.5": "0.375rem",
+    "2": "0.5rem",
+    "2.5": "0.625rem",
+    "3": "0.75rem",
+    "3.5": "0.875rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "7": "1.75rem",
+    "8": "2rem",
+    "9": "2.25rem",
+    "10": "2.5rem",
+    "11": "2.75rem",
+    "12": "3rem",
+    "14": "3.5rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "28": "7rem",
+    "32": "8rem",
+    "36": "9rem",
+    "40": "10rem",
+    "44": "11rem",
+    "48": "12rem"
+  },
+
+  "components": {
+    "button": {
+      "description": "Project Sekai buttons feature trapezoid/parallelogram shapes with Japanese text as primary and small English text as secondary label.",
+      
+      "variants": {
+        "primary": {
+          "background": "linear-gradient(135deg, #00D4AA 0%, #00A888 100%)",
+          "backgroundHover": "linear-gradient(135deg, #33E5C4 0%, #00D4AA 100%)",
+          "backgroundActive": "#00A888",
+          "textColor": "#0A0A12",
+          "border": "none",
+          "shadow": "0 4px 16px rgba(0, 212, 170, 0.3)",
+          "shadowHover": "0 6px 24px rgba(0, 212, 170, 0.4)"
+        },
+        "secondary": {
+          "background": "rgba(20, 20, 32, 0.8)",
+          "backgroundHover": "rgba(30, 30, 50, 0.9)",
+          "textColor": "#F5F5FF",
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "borderHover": "1px solid rgba(0, 212, 170, 0.3)"
+        },
+        "ghost": {
+          "background": "transparent",
+          "backgroundHover": "rgba(0, 212, 170, 0.1)",
+          "textColor": "#00D4AA",
+          "border": "1px solid rgba(0, 212, 170, 0.3)",
+          "borderHover": "1px solid rgba(0, 212, 170, 0.5)"
+        },
+        "menu": {
+          "description": "Main menu trapezoid buttons as seen in TopMenuAtlas",
+          "background": "rgba(15, 15, 26, 0.85)",
+          "backgroundHover": "rgba(0, 212, 170, 0.15)",
+          "textColor": "#F5F5FF",
+          "border": "1px solid rgba(255, 255, 255, 0.08)",
+          "borderHover": "1px solid rgba(0, 212, 170, 0.4)",
+          "transform": "skewX(-5deg)",
+          "innerTransform": "skewX(5deg)"
+        }
+      },
+
+      "sizes": {
+        "sm": {
+          "paddingX": "1rem",
+          "paddingY": "0.5rem",
+          "fontSize": "0.75rem",
+          "height": "32px"
+        },
+        "md": {
+          "paddingX": "1.5rem",
+          "paddingY": "0.75rem",
+          "fontSize": "0.875rem",
+          "height": "40px"
+        },
+        "lg": {
+          "paddingX": "2rem",
+          "paddingY": "1rem",
+          "fontSize": "1rem",
+          "height": "48px"
+        },
+        "xl": {
+          "paddingX": "2.5rem",
+          "paddingY": "1.25rem",
+          "fontSize": "1.125rem",
+          "height": "56px"
+        }
+      },
+
+      "dualLabel": {
+        "description": "Buttons with both Japanese primary text and small English subtitle",
+        "example": {
+          "japanese": "ストーリー",
+          "english": "STORY"
+        },
+        "japaneseStyle": {
+          "fontSize": "1rem",
+          "fontWeight": 700,
+          "letterSpacing": "0.05em"
+        },
+        "englishStyle": {
+          "fontSize": "0.5625rem",
+          "fontWeight": 500,
+          "letterSpacing": "0.15em",
+          "textTransform": "uppercase",
+          "opacity": 0.7,
+          "marginTop": "2px"
+        }
+      }
+    },
+
+    "card": {
+      "description": "Cards in Project Sekai feature glass-morphism effects, subtle borders, and corner accents.",
+      
+      "base": {
+        "background": "rgba(20, 20, 32, 0.7)",
+        "backdropFilter": "blur(12px)",
+        "border": "1px solid rgba(255, 255, 255, 0.06)",
+        "borderRadius": "12px",
+        "shadow": "0 4px 16px rgba(0, 0, 0, 0.3)",
+        "padding": "1.5rem"
+      },
+
+      "variants": {
+        "default": {
+          "extends": "base"
+        },
+        "elevated": {
+          "background": "rgba(26, 26, 46, 0.8)",
+          "shadow": "0 8px 32px rgba(0, 0, 0, 0.4)"
+        },
+        "accent": {
+          "borderLeft": "3px solid #00D4AA",
+          "background": "linear-gradient(90deg, rgba(0, 212, 170, 0.08) 0%, rgba(20, 20, 32, 0.7) 30%)"
+        },
+        "highlighted": {
+          "border": "1px solid rgba(0, 212, 170, 0.3)",
+          "shadow": "0 0 20px rgba(0, 212, 170, 0.15)"
+        }
+      },
+
+      "cornerAccents": {
+        "description": "L-shaped corner decorations as seen in FrameAtlas",
+        "topLeft": {
+          "width": "20px",
+          "height": "20px",
+          "borderTop": "2px solid rgba(0, 212, 170, 0.5)",
+          "borderLeft": "2px solid rgba(0, 212, 170, 0.5)",
+          "position": "absolute",
+          "top": "-1px",
+          "left": "-1px"
+        },
+        "bottomRight": {
+          "width": "20px",
+          "height": "20px",
+          "borderBottom": "2px solid rgba(0, 212, 170, 0.5)",
+          "borderRight": "2px solid rgba(0, 212, 170, 0.5)",
+          "position": "absolute",
+          "bottom": "-1px",
+          "right": "-1px"
+        }
+      }
+    },
+
+    "header": {
+      "description": "Section headers with decorative elements as seen in HeaderTitleAtlas",
+      
+      "styles": {
+        "default": {
+          "display": "flex",
+          "alignItems": "center",
+          "gap": "1rem"
+        },
+        "withLine": {
+          "css": "::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(0, 212, 170, 0.4) 0%, transparent 100%); }"
+        },
+        "withIcon": {
+          "iconSize": "24px",
+          "iconColor": "#00D4AA"
+        }
+      },
+
+      "decorativeElements": {
+        "rhombus": {
+          "width": "8px",
+          "height": "8px",
+          "background": "#00D4AA",
+          "transform": "rotate(45deg)"
+        },
+        "line": {
+          "height": "2px",
+          "background": "linear-gradient(90deg, #00D4AA 0%, transparent 100%)",
+          "width": "100px"
+        },
+        "hexDot": {
+          "description": "Small hexagonal accent dots",
+          "clipPath": "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+          "size": "6px",
+          "background": "#00D4AA"
+        }
+      }
+    },
+
+    "badge": {
+      "description": "Status badges, rarity indicators, and labels",
+      
+      "variants": {
+        "default": {
+          "background": "rgba(0, 212, 170, 0.2)",
+          "color": "#00D4AA",
+          "border": "1px solid rgba(0, 212, 170, 0.3)",
+          "borderRadius": "4px",
+          "padding": "0.25rem 0.5rem",
+          "fontSize": "0.75rem",
+          "fontWeight": 600
+        },
+        "rarity": {
+          "1star": { "background": "#4A4A5A", "color": "#888" },
+          "2star": { "background": "#3D7A3D", "color": "#8FD88F" },
+          "3star": { "background": "#3D5A7A", "color": "#8FC8FF" },
+          "4star": { "background": "#7A5A3D", "color": "#FFD88F" },
+          "birthday": { "background": "#7A3D5A", "color": "#FF8FC8" }
+        },
+        "status": {
+          "active": { "background": "rgba(0, 212, 170, 0.2)", "color": "#00D4AA" },
+          "inactive": { "background": "rgba(96, 96, 128, 0.2)", "color": "#606080" },
+          "new": { "background": "rgba(255, 107, 157, 0.2)", "color": "#FF6B9D" }
+        }
+      }
+    },
+
+    "frame": {
+      "description": "Decorative frames and borders from FrameAtlas",
+      
+      "styles": {
+        "simple": {
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "borderRadius": "8px"
+        },
+        "accent": {
+          "border": "2px solid transparent",
+          "borderImage": "linear-gradient(135deg, rgba(0, 212, 170, 0.5), rgba(155, 93, 229, 0.3)) 1"
+        },
+        "double": {
+          "boxShadow": "inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.08)"
+        },
+        "glowing": {
+          "border": "1px solid rgba(0, 212, 170, 0.4)",
+          "boxShadow": "0 0 20px rgba(0, 212, 170, 0.15), inset 0 0 20px rgba(0, 212, 170, 0.05)"
+        }
+      }
+    },
+
+    "input": {
+      "base": {
+        "background": "rgba(15, 15, 26, 0.8)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "8px",
+        "padding": "0.75rem 1rem",
+        "color": "#F5F5FF",
+        "fontSize": "0.875rem"
+      },
+      "focus": {
+        "border": "1px solid rgba(0, 212, 170, 0.5)",
+        "boxShadow": "0 0 0 3px rgba(0, 212, 170, 0.1)"
+      },
+      "error": {
+        "border": "1px solid rgba(255, 71, 87, 0.5)",
+        "boxShadow": "0 0 0 3px rgba(255, 71, 87, 0.1)"
+      }
+    },
+
+    "modal": {
+      "overlay": {
+        "background": "rgba(5, 5, 8, 0.85)",
+        "backdropFilter": "blur(8px)"
+      },
+      "content": {
+        "background": "rgba(20, 20, 32, 0.95)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "16px",
+        "boxShadow": "0 24px 48px rgba(0, 0, 0, 0.5)",
+        "padding": "2rem"
+      }
+    },
+
+    "tooltip": {
+      "background": "rgba(26, 26, 46, 0.95)",
+      "border": "1px solid rgba(255, 255, 255, 0.1)",
+      "borderRadius": "8px",
+      "padding": "0.5rem 0.75rem",
+      "fontSize": "0.75rem",
+      "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.4)"
+    },
+
+    "navigation": {
+      "description": "Top navigation and menu patterns from MenuTopAtlas",
+      
+      "topBar": {
+        "height": "60px",
+        "background": "rgba(10, 10, 18, 0.9)",
+        "backdropFilter": "blur(12px)",
+        "borderBottom": "1px solid rgba(255, 255, 255, 0.06)"
+      },
+      
+      "menuItem": {
+        "padding": "0.75rem 1.25rem",
+        "borderRadius": "8px",
+        "transition": "all 0.2s ease",
+        "default": {
+          "background": "transparent",
+          "color": "#A0A0B8"
+        },
+        "hover": {
+          "background": "rgba(0, 212, 170, 0.1)",
+          "color": "#F5F5FF"
+        },
+        "active": {
+          "background": "rgba(0, 212, 170, 0.15)",
+          "color": "#00D4AA",
+          "borderBottom": "2px solid #00D4AA"
+        }
+      }
+    }
+  },
+
+  "geometricPatterns": {
+    "description": "Decorative geometric shapes used throughout the UI",
+    
+    "hexagon": {
+      "clipPath": "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+      "usage": "Background patterns, icons, decorative elements"
+    },
+    "rhombus": {
+      "clipPath": "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+      "transform": "rotate(0deg)",
+      "usage": "Bullets, separators, accent dots"
+    },
+    "parallelogram": {
+      "transform": "skewX(-10deg)",
+      "usage": "Buttons, tabs, labels"
+    },
+    "trapezoid": {
+      "clipPath": "polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%)",
+      "usage": "Menu buttons, headers"
+    },
+    "lCorner": {
+      "description": "L-shaped corner accents",
+      "css": "border-left: 2px solid; border-top: 2px solid;",
+      "usage": "Card corners, frame decorations"
+    },
+    "diagonalStripes": {
+      "background": "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 212, 170, 0.03) 10px, rgba(0, 212, 170, 0.03) 20px)",
+      "usage": "Subtle background texture"
+    },
+    "hexGrid": {
+      "description": "Hexagonal grid pattern for backgrounds",
+      "css": "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='%2300D4AA' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9z'/%3E%3C/g%3E%3C/svg%3E\")"
+    }
+  },
+
+  "animations": {
+    "description": "Animation patterns used in Project Sekai UI",
+    
+    "timing": {
+      "instant": "0ms",
+      "fast": "150ms",
+      "normal": "250ms",
+      "slow": "400ms",
+      "slower": "600ms",
+      "slowest": "1000ms"
+    },
+
+    "easing": {
+      "linear": "linear",
+      "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+      "easeOut": "cubic-bezier(0, 0, 0.2, 1)",
+      "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "sekaiSmooth": "cubic-bezier(0.25, 0.1, 0.25, 1)"
+    },
+
+    "keyframes": {
+      "fadeIn": {
+        "from": { "opacity": 0 },
+        "to": { "opacity": 1 }
+      },
+      "fadeInUp": {
+        "from": { "opacity": 0, "transform": "translateY(20px)" },
+        "to": { "opacity": 1, "transform": "translateY(0)" }
+      },
+      "fadeInDown": {
+        "from": { "opacity": 0, "transform": "translateY(-20px)" },
+        "to": { "opacity": 1, "transform": "translateY(0)" }
+      },
+      "slideInRight": {
+        "from": { "opacity": 0, "transform": "translateX(30px)" },
+        "to": { "opacity": 1, "transform": "translateX(0)" }
+      },
+      "slideInLeft": {
+        "from": { "opacity": 0, "transform": "translateX(-30px)" },
+        "to": { "opacity": 1, "transform": "translateX(0)" }
+      },
+      "scaleIn": {
+        "from": { "opacity": 0, "transform": "scale(0.9)" },
+        "to": { "opacity": 1, "transform": "scale(1)" }
+      },
+      "pulse": {
+        "0%, 100%": { "opacity": 1 },
+        "50%": { "opacity": 0.5 }
+      },
+      "glow": {
+        "0%, 100%": { "boxShadow": "0 0 20px rgba(0, 212, 170, 0.2)" },
+        "50%": { "boxShadow": "0 0 40px rgba(0, 212, 170, 0.4)" }
+      },
+      "float": {
+        "0%, 100%": { "transform": "translateY(0)" },
+        "50%": { "transform": "translateY(-10px)" }
+      },
+      "shimmer": {
+        "0%": { "backgroundPosition": "-200% 0" },
+        "100%": { "backgroundPosition": "200% 0" }
+      },
+      "rotateIn": {
+        "from": { "opacity": 0, "transform": "rotate(-10deg) scale(0.9)" },
+        "to": { "opacity": 1, "transform": "rotate(0) scale(1)" }
+      },
+      "borderGlow": {
+        "0%, 100%": { "borderColor": "rgba(0, 212, 170, 0.3)" },
+        "50%": { "borderColor": "rgba(0, 212, 170, 0.6)" }
+      },
+      "textGradientShift": {
+        "0%": { "backgroundPosition": "0% 50%" },
+        "50%": { "backgroundPosition": "100% 50%" },
+        "100%": { "backgroundPosition": "0% 50%" }
+      }
+    },
+
+    "presets": {
+      "cardEnter": {
+        "animation": "fadeInUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "staggerDelay": "0.05s"
+      },
+      "buttonHover": {
+        "transition": "all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1)"
+      },
+      "menuOpen": {
+        "animation": "slideInRight 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)"
+      },
+      "modalEnter": {
+        "animation": "scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)"
+      },
+      "loadingPulse": {
+        "animation": "pulse 2s ease-in-out infinite"
+      },
+      "accentGlow": {
+        "animation": "glow 3s ease-in-out infinite"
+      },
+      "floatingElement": {
+        "animation": "float 6s ease-in-out infinite"
+      }
+    }
+  },
+
+  "particles": {
+    "description": "Ambient particle effects for the SEKAI atmosphere",
+    
+    "floatingParticles": {
+      "description": "Subtle floating particles like in the Empty SEKAI",
+      "count": 30,
+      "size": { "min": 2, "max": 6 },
+      "opacity": { "min": 0.1, "max": 0.4 },
+      "color": "#00D4AA",
+      "speed": { "min": 0.2, "max": 0.8 },
+      "direction": "upward",
+      "blur": "1px"
+    },
+    
+    "lightRays": {
+      "description": "Diagonal light rays for magical effect",
+      "css": "background: linear-gradient(45deg, transparent 40%, rgba(0, 212, 170, 0.03) 50%, transparent 60%)",
+      "animation": "shimmer 8s linear infinite",
+      "opacity": 0.5
+    },
+
+    "starfield": {
+      "description": "Twinkling star background",
+      "count": 50,
+      "size": { "min": 1, "max": 3 },
+      "opacity": { "min": 0.2, "max": 0.8 },
+      "twinkleAnimation": "pulse 3s ease-in-out infinite"
+    },
+
+    "hexParticles": {
+      "description": "Hexagonal floating shapes",
+      "shape": "hexagon",
+      "count": 15,
+      "size": { "min": 10, "max": 30 },
+      "opacity": 0.1,
+      "rotation": true
+    }
+  },
+
+  "effects": {
+    "glassmorph": {
+      "default": {
+        "background": "rgba(20, 20, 32, 0.6)",
+        "backdropFilter": "blur(12px)",
+        "WebkitBackdropFilter": "blur(12px)",
+        "border": "1px solid rgba(255, 255, 255, 0.08)"
+      },
+      "strong": {
+        "background": "rgba(15, 15, 26, 0.8)",
+        "backdropFilter": "blur(20px)",
+        "WebkitBackdropFilter": "blur(20px)",
+        "border": "1px solid rgba(255, 255, 255, 0.1)"
+      }
+    },
+
+    "textGlow": {
+      "cyan": "0 0 20px rgba(0, 212, 170, 0.5), 0 0 40px rgba(0, 212, 170, 0.3)",
+      "pink": "0 0 20px rgba(255, 107, 157, 0.5), 0 0 40px rgba(255, 107, 157, 0.3)",
+      "white": "0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3)"
+    },
+
+    "noise": {
+      "description": "Subtle noise texture overlay for depth",
+      "css": "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
+      "opacity": 0.03,
+      "mixBlendMode": "overlay"
+    },
+
+    "scanlines": {
+      "description": "Subtle CRT-like scanlines for retro-digital feel",
+      "css": "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px)",
+      "opacity": 0.5
+    },
+
+    "vignette": {
+      "css": "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%)"
+    }
+  },
+
+  "breakpoints": {
+    "xs": "320px",
+    "sm": "480px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  },
+
+  "zIndex": {
+    "base": 0,
+    "dropdown": 10,
+    "sticky": 20,
+    "fixed": 30,
+    "modal": 40,
+    "popover": 50,
+    "tooltip": 60,
+    "toast": 70,
+    "overlay": 80,
+    "max": 100
+  },
+
+  "transitions": {
+    "default": "all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "fast": "all 0.15s cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "slow": "all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "spring": "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+    "color": "color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease",
+    "transform": "transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "opacity": "opacity 0.25s ease"
+  },
+
+  "cssVariables": {
+    "description": "Ready-to-use CSS custom properties",
+    "output": ":root {\n  /* Colors */\n  --sekai-cyan: #00D4AA;\n  --sekai-cyan-glow: #00FFD0;\n  --sekai-pink: #FF6B9D;\n  --sekai-purple: #9B5DE5;\n  --sekai-blue: #00B4D8;\n  --sekai-yellow: #FFD93D;\n\n  /* Backgrounds */\n  --bg-void: #050508;\n  --bg-primary: #0A0A12;\n  --bg-secondary: #0F0F1A;\n  --bg-card: #141420;\n  --bg-elevated: #1A1A2E;\n\n  /* Glass */\n  --glass-bg: rgba(20, 20, 32, 0.7);\n  --glass-border: rgba(255, 255, 255, 0.06);\n\n  /* Text */\n  --text-primary: #F5F5FF;\n  --text-secondary: #A0A0B8;\n  --text-muted: #606080;\n\n  /* Shadows */\n  --glow-cyan: 0 0 20px rgba(0, 212, 170, 0.2);\n  --glow-cyan-strong: 0 0 40px rgba(0, 212, 170, 0.4);\n\n  /* Fonts */\n  --font-display: 'Zen Kaku Gothic New', 'M PLUS 1p', system-ui, sans-serif;\n  --font-heading: 'Outfit', 'Exo 2', system-ui, sans-serif;\n\n  /* Transitions */\n  --transition-default: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);\n  --easing-sekai: cubic-bezier(0.25, 0.1, 0.25, 1);\n}"
+  }
+}
