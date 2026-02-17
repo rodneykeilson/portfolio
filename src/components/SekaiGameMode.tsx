@@ -5,10 +5,10 @@
  * that matches the content of classic mode but with game-style UI
  */
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Lock, ChevronLeft, Mail, Linkedin, Sparkles } from 'lucide-react';
-import { projects, privateProjects, categoryLabels } from '../data/projects';
+import { Github, ExternalLink, ChevronLeft, Mail, Linkedin, Sparkles } from 'lucide-react';
+import { projects, categoryLabels } from '../data/projects';
 
 type Screen = 'title' | 'home' | 'projects' | 'skills' | 'about' | 'contact';
 
@@ -184,6 +184,54 @@ function Diamond({ size = 8, color = '#00CCC0', filled = true, className = '' }:
         opacity: 0.8,
       }}
     />
+  );
+}
+
+function GameProjectPreview({ screenshots, title, compact = false }: { screenshots: string[]; title: string; compact?: boolean }) {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!isHovered || screenshots.length < 2) return;
+
+    const interval = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % screenshots.length);
+    }, 1200);
+
+    return () => window.clearInterval(interval);
+  }, [isHovered, screenshots.length]);
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-lg border border-white/15 ${compact ? 'w-20 h-14' : 'w-full h-36'} mb-3`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={`${title}-${activeSlide}`}
+          src={screenshots[activeSlide]}
+          alt={`${title} preview ${activeSlide + 1}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+      <div className="absolute bottom-1.5 left-1.5 right-1.5 flex items-center justify-between">
+        <span className="text-[8px] tracking-widest text-white/80 uppercase">Preview</span>
+        <div className="flex items-center gap-1">
+          {screenshots.map((_, index) => (
+            <span
+              key={`${title}-preview-dot-${index}`}
+              className={`h-1 rounded-full transition-all ${index === activeSlide ? 'w-3 bg-white' : 'w-1 bg-white/50'}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -631,6 +679,7 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
                 whileHover={{ scale: 1.02, x: 5 }}
                 style={{ borderLeftColor: colorMap[project.color], borderLeftWidth: 3 }}
               >
+                <GameProjectPreview screenshots={project.screenshots} title={project.title} />
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
@@ -679,12 +728,7 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.05 }}
               >
-                <div 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ background: `${colorMap[project.color]}20` }}
-                >
-                  <Diamond size={8} color={colorMap[project.color]} />
-                </div>
+                <GameProjectPreview screenshots={project.screenshots} title={project.title} compact />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <h4 className="text-sm font-medium text-white truncate">{project.title}</h4>
@@ -699,38 +743,6 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
                 </div>
                 <ExternalLink size={14} className="text-gray-500 group-hover:text-[#00CCC0] transition-colors flex-shrink-0" />
               </motion.a>
-            ))}
-          </div>
-        </div>
-
-        {/* Private Projects */}
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Lock size={14} className="text-[#BB88FF]" />
-            <span className="text-sm text-gray-400 font-display tracking-wide uppercase">Private Work</span>
-            <span className="text-[9px] text-gray-500 tracking-widest">PRIVATE</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {privateProjects.map((project, i) => (
-              <motion.div
-                key={project.title}
-                className="p-3 rounded-lg bg-[#222235]/40 border border-white/5"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.05 }}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <Lock size={12} className="text-gray-500" />
-                  <h4 className="text-sm font-medium text-gray-400">{project.title}</h4>
-                </div>
-                <p className="text-xs text-gray-500">{project.description}</p>
-                <span 
-                  className="inline-block text-[9px] mt-2 px-2 py-0.5 rounded-full"
-                  style={{ background: `${colorMap[project.color]}15`, color: colorMap[project.color] }}
-                >
-                  {categoryLabels[project.category]}
-                </span>
-              </motion.div>
             ))}
           </div>
         </div>
