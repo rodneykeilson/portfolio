@@ -23,15 +23,15 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Made with love - Japanese style */}
+          {/* Made with love */}
           <div className="flex flex-col items-center gap-1">
-            <p className="flex items-center gap-2 text-sm text-[var(--color-text-muted)] font-jp">
+            <p className="flex items-center gap-2 text-sm text-[var(--color-text-muted)] font-en">
               Made with{' '}
               <Heart className="w-4 h-4 text-[var(--color-sekai-pink)] fill-[var(--color-sekai-pink)]" /> and
               lots of code
             </p>
-            <p className="text-[9px] text-[var(--color-text-muted)] font-jp opacity-60">
-              愛とコードで作られた
+            <p className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase opacity-60">
+              Crafted with care
             </p>
           </div>
 

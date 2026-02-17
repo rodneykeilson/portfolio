@@ -2,10 +2,8 @@
 
 /* 
  * Fonts loaded via index.html:
- * - Zen Kaku Gothic New (Japanese - primary SEKAI font)
- * - M PLUS 1p (Japanese - secondary)
  * - Outfit (Display headings)
- * - Inter (English body text)
+ * - Inter (Body text)
  */
 
 /* 
@@ -13,7 +11,7 @@
  * PROJECT SEKAI: COLORFUL STAGE - DESIGN SYSTEM
  * 
  * Authentic SEKAI aesthetic with:
- * - Japanese + English typography (dual-language buttons)
+ * - Polished typography hierarchy
  * - Trapezoid buttons with clip-path (iconic shape)
  * - L-shaped corner accents on cards
  * - Magical void backgrounds
@@ -64,7 +62,7 @@
   --color-text-accent: #00D4AA;
 
   /* === Typography === */
-  --font-jp: 'Zen Kaku Gothic New', 'M PLUS 1p', 'Noto Sans JP', system-ui, sans-serif;
+  --font-jp: 'Inter', 'Outfit', system-ui, sans-serif;
   --font-display: 'Outfit', 'Exo 2', system-ui, sans-serif;
   --font-en: 'Inter', 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -92,7 +90,7 @@ body {
   padding: 0;
   background: var(--color-bg-void);
   color: var(--color-text-primary);
-  font-family: var(--font-jp);
+  font-family: var(--font-en);
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.6;
@@ -212,11 +210,11 @@ h1, h2, h3, h4, h5, h6 {
 .font-display { font-family: var(--font-display); }
 .font-en { font-family: var(--font-en); }
 
-/* Japanese text style - for button labels */
+/* Primary label style */
 .text-jp {
-  font-family: var(--font-jp);
+  font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 /* English subtitle style - for button labels */
@@ -412,8 +410,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================================
-   SEKAI TRAPEZOID BUTTON (The iconic style)
-   Japanese text on top, English subtitle below
+  SEKAI TRAPEZOID BUTTON (The iconic style)
+  Primary label + optional subtitle
    ============================================================================ */
 
 .btn-sekai {
@@ -452,10 +450,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-sekai__jp {
-  font-family: var(--font-jp);
+  font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-text-primary);
   transition: color 0.25s var(--ease-sekai);
 }
@@ -512,7 +511,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 12px 28px;
   background: linear-gradient(135deg, var(--color-sekai-cyan) 0%, #00A888 100%);
   color: var(--color-bg-primary);
-  font-family: var(--font-jp);
+  font-family: var(--font-en);
   font-weight: 600;
   font-size: 0.875rem;
   border: none;
@@ -535,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 12px 28px;
   background: transparent;
   color: var(--color-sekai-cyan);
-  font-family: var(--font-jp);
+  font-family: var(--font-en);
   font-weight: 500;
   font-size: 0.875rem;
   border: 1px solid rgba(0, 212, 170, 0.3);
@@ -665,7 +664,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--color-glass-border);
   border-radius: 10px;
   color: var(--color-text-primary);
-  font-family: var(--font-jp);
+  font-family: var(--font-en);
   font-size: 0.875rem;
   transition: all 0.3s var(--ease-sekai);
   outline: none;

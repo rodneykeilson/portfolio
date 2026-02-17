@@ -22,14 +22,9 @@ export function About() {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <User className="w-4 h-4 text-[var(--color-sekai-pink)]" />
-            <span className="text-sm text-[var(--color-text-secondary)] font-jp">自己紹介</span>
-            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">PROFILE</span>
+            <span className="text-sm text-[var(--color-text-secondary)] font-display tracking-wide uppercase">Profile</span>
           </motion.div>
-          
-          {/* Japanese title */}
-          <h2 className="font-jp text-lg text-[var(--color-sekai-pink)] tracking-wider mb-2">
-            プロフィール
-          </h2>
+
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient-pink">About Me</span>
           </h2>
@@ -48,7 +43,7 @@ export function About() {
             {/* Main bio */}
             <div className="mb-10">
               <motion.p
-                className="text-xl md:text-2xl text-[var(--color-text-primary)] leading-relaxed mb-6 font-jp"
+                className="text-xl md:text-2xl text-[var(--color-text-primary)] leading-relaxed mb-6 font-en"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -57,11 +52,11 @@ export function About() {
                 Hey there! I'm{' '}
                 <span className="text-gradient font-bold">Rodney Keilson</span>, but you might
                 know me as{' '}
-                <span className="text-[var(--color-sekai-pink)] font-semibold">ロデニアス (Rodenious)</span> online.
+                <span className="text-[var(--color-sekai-pink)] font-semibold">Rodenious</span> online.
               </motion.p>
 
               <motion.p
-                className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6 font-jp"
+                className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6 font-en"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -74,7 +69,7 @@ export function About() {
               </motion.p>
 
               <motion.p
-                className="text-lg text-[var(--color-text-secondary)] leading-relaxed font-jp"
+                className="text-lg text-[var(--color-text-secondary)] leading-relaxed font-en"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -97,7 +92,6 @@ export function About() {
               >
                 <MapPin className="w-5 h-5 text-[var(--color-sekai-cyan)] mb-3" />
                 <h4 className="font-semibold text-[var(--color-text-primary)] mb-1 font-display">Based In</h4>
-                <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">インドネシア</p>
                 <p className="text-sm text-[var(--color-text-secondary)] font-en">Indonesia</p>
               </motion.div>
 
@@ -110,7 +104,6 @@ export function About() {
               >
                 <Heart className="w-5 h-5 text-[var(--color-sekai-pink)] mb-3" />
                 <h4 className="font-semibold text-[var(--color-text-primary)] mb-1 font-display">Interests</h4>
-                <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">機械学習・モバイル開発</p>
                 <p className="text-sm text-[var(--color-text-secondary)] font-en">ML, Mobile Dev, Games</p>
               </motion.div>
 
@@ -123,7 +116,6 @@ export function About() {
               >
                 <Music className="w-5 h-5 text-[var(--color-sekai-purple)] mb-3" />
                 <h4 className="font-semibold text-[var(--color-text-primary)] mb-1 font-display">Fun Fact</h4>
-                <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">プロセカ大好き！</p>
                 <p className="text-sm text-[var(--color-text-secondary)] font-en">Project Sekai Enthusiast</p>
               </motion.div>
             </div>

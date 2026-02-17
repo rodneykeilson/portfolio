@@ -275,17 +275,11 @@ function SekaiBtn({
           {jp && en ? (
             <>
               <span 
-                className="font-jp text-base font-semibold tracking-wide"
+                className="font-display text-sm md:text-base font-semibold tracking-[0.12em] uppercase"
                 style={{ 
                   color: variant === 'solid' ? '#fff' : color,
                   textShadow: variant === 'solid' ? '0 1px 2px rgba(0,0,0,0.3)' : 'none',
                 }}
-              >
-                {jp}
-              </span>
-              <span 
-                className="text-[9px] tracking-[0.2em] uppercase"
-                style={{ color: variant === 'solid' ? 'rgba(255,255,255,0.8)' : `${color}99` }}
               >
                 {en}
               </span>
@@ -394,10 +388,10 @@ function TitleScreen({ onStart }: { onStart: () => void }) {
           RODENIOUS
         </h1>
         <motion.div 
-          className="text-lg md:text-2xl text-[#FF77A8] font-jp mt-3"
+          className="text-sm md:text-base text-[#FF77A8] font-display tracking-[0.2em] uppercase mt-4"
           style={{ textShadow: '0 0 15px rgba(255,119,168,0.3)' }}
         >
-          ロデニアス
+          CREATIVE PORTFOLIO
         </motion.div>
         
         {/* Decorative line */}
@@ -432,7 +426,7 @@ function TitleScreen({ onStart }: { onStart: () => void }) {
           >
             TAP ANYWHERE TO START
           </div>
-          <div className="text-xs text-gray-400 font-jp">タップしてスタート</div>
+          <div className="text-xs text-gray-400 font-en tracking-[0.2em] uppercase">Interactive Experience</div>
         </motion.div>
         
         {/* Animated chevrons */}
@@ -457,10 +451,10 @@ function TitleScreen({ onStart }: { onStart: () => void }) {
 // Home Screen with premium magical effects
 function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
   const menuItems = [
-    { jp: '作品集', en: 'PROJECTS', screen: 'projects' as Screen, color: '#00CCC0', icon: '◈' },
-    { jp: 'スキル', en: 'SKILLS', screen: 'skills' as Screen, color: '#FF77A8', icon: '✦' },
-    { jp: 'について', en: 'ABOUT', screen: 'about' as Screen, color: '#BB88FF', icon: '◇' },
-    { jp: '連絡先', en: 'CONTACT', screen: 'contact' as Screen, color: '#FFDD44', icon: '✧' },
+    { en: 'PROJECTS', screen: 'projects' as Screen, color: '#00CCC0', icon: '◈' },
+    { en: 'SKILLS', screen: 'skills' as Screen, color: '#FF77A8', icon: '✦' },
+    { en: 'ABOUT', screen: 'about' as Screen, color: '#BB88FF', icon: '◇' },
+    { en: 'CONTACT', screen: 'contact' as Screen, color: '#FFDD44', icon: '✧' },
   ];
 
   return (
@@ -471,7 +465,7 @@ function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
       exit={{ opacity: 0 }}
     >
       {/* Header */}
-      <Header title="ホーム" subtitle="HOME" />
+      <Header title="Home" subtitle="HOME" />
 
       {/* Profile section with glow */}
       <motion.div 
@@ -520,12 +514,12 @@ function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
         </motion.div>
         
         <motion.p 
-          className="text-[#00CCC0] font-jp mt-4 text-lg"
+          className="text-[#00CCC0] font-display mt-4 text-sm tracking-[0.18em] uppercase"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          クリエイター • デベロッパー
+          Creator • Developer
         </motion.p>
         <motion.p 
           className="text-gray-400 text-sm mt-2 max-w-xs mx-auto"
@@ -554,7 +548,7 @@ function HomeScreen({ navigate }: { navigate: (s: Screen) => void }) {
             <SekaiBtn
               onClick={() => navigate(item.screen)}
               color={item.color}
-              jp={item.jp}
+              jp={item.en}
               en={item.en}
               className="w-full"
             />
@@ -592,7 +586,7 @@ function Header({ title, subtitle, onBack }: { title: string; subtitle: string; 
           </motion.button>
         )}
         <div className="text-center">
-          <div className="text-lg font-semibold text-white font-jp">{title}</div>
+          <div className="text-base font-semibold tracking-[0.08em] uppercase text-white font-display">{title}</div>
           <div className="text-[9px] tracking-widest text-[#00CCC0]">{subtitle}</div>
         </div>
       </div>
@@ -613,7 +607,7 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Header title="作品集" subtitle="PROJECTS" onBack={() => navigate('home')} />
+      <Header title="Projects" subtitle="PROJECTS" onBack={() => navigate('home')} />
 
       <div className="px-4 py-6 max-w-4xl mx-auto">
         {/* Featured Projects */}
@@ -713,7 +707,7 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Lock size={14} className="text-[#BB88FF]" />
-            <span className="text-sm text-gray-400 font-jp">非公開作品</span>
+            <span className="text-sm text-gray-400 font-display tracking-wide uppercase">Private Work</span>
             <span className="text-[9px] text-gray-500 tracking-widest">PRIVATE</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -755,7 +749,7 @@ function ProjectsScreen({ navigate }: { navigate: (s: Screen) => void }) {
             className="inline-flex items-center gap-2 text-sm text-[#00CCC0] hover:text-white transition-colors"
           >
             <Github size={16} />
-            <span className="font-jp">すべて見る</span>
+            <span className="font-display tracking-wide uppercase">View All Repositories</span>
             <span className="text-[9px] tracking-widest opacity-70">VIEW ALL</span>
             <ExternalLink size={12} />
           </a>
@@ -781,7 +775,7 @@ function SkillsScreen({ navigate }: { navigate: (s: Screen) => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Header title="スキル" subtitle="SKILLS" onBack={() => navigate('home')} />
+      <Header title="Skills" subtitle="SKILLS" onBack={() => navigate('home')} />
 
       <div className="px-4 py-6 max-w-2xl mx-auto">
         <div className="space-y-4">
@@ -832,7 +826,7 @@ function SkillsScreen({ navigate }: { navigate: (s: Screen) => void }) {
 function AboutScreen({ navigate }: { navigate: (s: Screen) => void }) {
   const lines = [
     { text: "Hi! I'm Rodney Keilson,", highlight: true },
-    { text: "also known as ロデニアス.", jp: true },
+    { text: "also known as Rodenious.", jp: true },
     { text: "" },
     { text: "A passionate developer" },
     { text: "inspired by rhythm games" },
@@ -850,7 +844,7 @@ function AboutScreen({ navigate }: { navigate: (s: Screen) => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Header title="について" subtitle="ABOUT" onBack={() => navigate('home')} />
+      <Header title="About" subtitle="ABOUT" onBack={() => navigate('home')} />
 
       {/* Decorative diamond */}
       <motion.div
@@ -872,7 +866,7 @@ function AboutScreen({ navigate }: { navigate: (s: Screen) => void }) {
             key={i}
             className={`text-base md:text-lg mb-1 ${
               line.highlight ? 'text-white font-semibold' : 
-              line.jp ? 'text-[#FF77A8] font-jp' : 
+                line.jp ? 'text-[#FF77A8] font-display uppercase tracking-[0.1em]' : 
               line.color ? '' : 'text-gray-400'
             }`}
             style={line.color ? { color: line.color } : undefined}
@@ -904,9 +898,9 @@ function AboutScreen({ navigate }: { navigate: (s: Screen) => void }) {
 // Contact Screen
 function ContactScreen({ navigate }: { navigate: (s: Screen) => void }) {
   const contacts = [
-    { jp: 'メール', en: 'EMAIL', icon: Mail, url: 'mailto:keilsonrodney0710@gmail.com', color: '#00CCC0' },
-    { jp: 'GitHub', en: 'GITHUB', icon: Github, url: 'https://github.com/rodneykeilson', color: '#BB88FF' },
-    { jp: 'LinkedIn', en: 'LINKEDIN', icon: Linkedin, url: 'https://linkedin.com/in/rodneykeilson', color: '#4499EE' },
+    { label: 'Email', en: 'EMAIL', icon: Mail, url: 'mailto:keilsonrodney0710@gmail.com', color: '#00CCC0' },
+    { label: 'GitHub', en: 'GITHUB', icon: Github, url: 'https://github.com/rodneykeilson', color: '#BB88FF' },
+    { label: 'LinkedIn', en: 'LINKEDIN', icon: Linkedin, url: 'https://linkedin.com/in/rodneykeilson', color: '#4499EE' },
   ];
 
   return (
@@ -916,7 +910,7 @@ function ContactScreen({ navigate }: { navigate: (s: Screen) => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Header title="連絡先" subtitle="CONTACT" onBack={() => navigate('home')} />
+      <Header title="Contact" subtitle="CONTACT" onBack={() => navigate('home')} />
 
       <motion.div 
         className="w-full max-w-sm bg-[#222235]/60 rounded-2xl p-6 border border-white/10"
@@ -925,7 +919,7 @@ function ContactScreen({ navigate }: { navigate: (s: Screen) => void }) {
         transition={{ delay: 0.2 }}
       >
         <h2 className="text-2xl font-bold text-white text-center mb-1">Get in Touch</h2>
-        <p className="text-sm text-[#FF77A8] text-center font-jp mb-6">お気軽にご連絡ください</p>
+        <p className="text-sm text-[#FF77A8] text-center font-en mb-6">Feel free to reach out anytime.</p>
 
         <div className="space-y-3">
           {contacts.map((contact, i) => (
@@ -947,7 +941,7 @@ function ContactScreen({ navigate }: { navigate: (s: Screen) => void }) {
             >
               <contact.icon size={20} style={{ color: contact.color }} />
               <div className="flex-1">
-                <div className="text-white font-jp">{contact.jp}</div>
+                <div className="text-white font-en">{contact.label}</div>
                 <div className="text-[9px] tracking-widest text-gray-500">{contact.en}</div>
               </div>
               <ExternalLink size={14} className="text-gray-500" />

@@ -18,13 +18,13 @@ const BASE = import.meta.env.BASE_URL;
 
 // SEKAI-style button using actual game sprites
 function SekaiRealButton({ 
-  japanese, 
-  english, 
+  label,
+  subtitle,
   variant = 'cyan',
   onClick 
 }: { 
-  japanese: string; 
-  english: string; 
+  label: string;
+  subtitle?: string;
   variant?: 'cyan' | 'pink' | 'green';
   onClick?: () => void;
 }) {
@@ -84,11 +84,13 @@ function SekaiRealButton({
           {/* Text content */}
           <div className="relative z-10 flex flex-col items-center">
             <span className="font-jp text-white text-base font-medium tracking-wide">
-              {japanese}
+              {label}
             </span>
-            <span className="font-en text-white/80 text-[10px] tracking-[0.15em] uppercase">
-              {english}
-            </span>
+            {subtitle && (
+              <span className="font-en text-white/80 text-[10px] tracking-[0.15em] uppercase">
+                {subtitle}
+              </span>
+            )}
           </div>
         </div>
 
@@ -269,24 +271,24 @@ export function Hero() {
           <div className="w-12 md:w-20 h-[1px] bg-gradient-to-l from-transparent to-[var(--color-sekai-cyan)] opacity-40" />
         </div>
 
-        {/* Japanese tagline */}
+        {/* Top tagline */}
         <motion.p 
-          className="font-jp text-[var(--color-sekai-cyan)] text-base md:text-lg tracking-[0.2em] mb-2"
+          className="font-display text-[var(--color-sekai-cyan)] text-sm md:text-base tracking-[0.22em] uppercase mb-2"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          クリエイター • 開発者 • アーティスト
+          Creative Technologist • Developer • Builder
         </motion.p>
         
-        {/* English subtitle */}
+        {/* Subtitle */}
         <motion.p 
           className="font-en text-[var(--color-text-muted)] text-[10px] md:text-xs tracking-[0.3em] uppercase mb-8"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          Creator • Developer • Artist
+          Crafting software with style and clarity
         </motion.p>
 
         {/* Name - Large display */}
@@ -306,7 +308,7 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        {/* Alias with Japanese */}
+        {/* Alias */}
         <motion.div
           className="mb-10"
           initial={{ opacity: 0, y: 20 }}
@@ -314,16 +316,13 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-xl md:text-2xl text-[var(--color-text-secondary)]">
-            aka <span className="text-[var(--color-sekai-pink)] font-jp font-semibold">ロデニアス</span>
-          </p>
-          <p className="text-sm text-[var(--color-text-muted)] font-en tracking-wider mt-1">
-            RODENIOUS
+            aka <span className="text-[var(--color-sekai-pink)] font-display font-semibold tracking-wide uppercase">RODENIOUS</span>
           </p>
         </motion.div>
 
         {/* Description */}
         <motion.p
-          className="text-base md:text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto mb-12 leading-relaxed font-jp"
+          className="text-base md:text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto mb-12 leading-relaxed font-en"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -342,14 +341,14 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <SekaiRealButton
-            japanese="作品を見る"
-            english="VIEW WORKS"
+            label="View Projects"
+            subtitle="Portfolio"
             variant="cyan"
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           />
           <SekaiRealButton
-            japanese="連絡する"
-            english="CONTACT ME"
+            label="Contact Me"
+            subtitle="Let’s Talk"
             variant="pink"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           />

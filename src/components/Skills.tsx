@@ -99,12 +99,12 @@ const colorStyles = {
   },
 };
 
-// Japanese category names
-const categoryNamesJp: Record<string, string> = {
-  'Languages': 'プログラミング言語',
-  'Frontend': 'フロントエンド',
-  'Backend & ML': 'バックエンド・機械学習',
-  'Tools & Platforms': 'ツール・プラットフォーム',
+// Category descriptions
+const categoryDescriptions: Record<string, string> = {
+  'Languages': 'Programming Languages',
+  'Frontend': 'Frontend Development',
+  'Backend & ML': 'Backend and Machine Learning',
+  'Tools & Platforms': 'Tools and Platforms',
 };
 
 export function Skills() {
@@ -128,18 +128,13 @@ export function Skills() {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <Code2 className="w-4 h-4 text-[var(--color-sekai-cyan)]" />
-            <span className="text-sm text-[var(--color-text-secondary)] font-jp">技術スタック</span>
-            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">TECH STACK</span>
+            <span className="text-sm text-[var(--color-text-secondary)] font-display tracking-wide uppercase">Tech Stack</span>
           </motion.div>
-          
-          {/* Japanese title */}
-          <h2 className="font-jp text-lg text-[var(--color-sekai-cyan)] tracking-wider mb-2">
-            スキル・技術
-          </h2>
+
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Skills & Technologies</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-jp">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-en">
             The tools and technologies I use to bring ideas to life.
           </p>
         </motion.div>
@@ -168,7 +163,7 @@ export function Skills() {
                   <Sparkles className={`w-4 h-4 ${styles.text}`} />
                 </motion.div>
 
-                {/* Category header with Japanese */}
+                {/* Category header */}
                 <div className="flex items-center gap-3 mb-6">
                   <motion.div 
                     className={`p-2 rounded-lg bg-[var(--color-bg-elevated)]`}
@@ -182,7 +177,7 @@ export function Skills() {
                       {category.name}
                     </h3>
                     <span className="text-[9px] font-en tracking-wider text-[var(--color-text-muted)] uppercase">
-                      {categoryNamesJp[category.name]}
+                      {categoryDescriptions[category.name]}
                     </span>
                   </div>
                 </div>
@@ -192,7 +187,7 @@ export function Skills() {
                   {category.skills.map((skill, skillIndex) => (
                     <motion.span
                       key={skill.name}
-                      className={`px-4 py-2 rounded-full text-sm font-medium border ${styles.pill} text-[var(--color-text-primary)] transition-all duration-300 cursor-default font-jp`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium border ${styles.pill} text-[var(--color-text-primary)] transition-all duration-300 cursor-default font-en`}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       whileHover={{ 
@@ -223,11 +218,8 @@ export function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-[var(--color-text-muted)] font-jp">
+          <p className="text-[var(--color-text-muted)] font-en">
             Always exploring new technologies and pushing creative boundaries.
-          </p>
-          <p className="text-[10px] font-en tracking-wider text-[var(--color-text-muted)] uppercase mt-1 opacity-60">
-            常に新しい技術を探求し、創造性の限界に挑戦しています
           </p>
         </motion.div>
       </div>

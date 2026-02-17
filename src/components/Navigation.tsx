@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-// Navigation items with Japanese + English (SEKAI style)
+// Navigation items (SEKAI style)
 const navItems = [
-  { name: 'Home', nameJp: 'ホーム', href: '#' },
-  { name: 'Projects', nameJp: 'プロジェクト', href: '#projects' },
-  { name: 'Skills', nameJp: 'スキル', href: '#skills' },
-  { name: 'About', nameJp: 'プロフィール', href: '#about' },
-  { name: 'Contact', nameJp: '連絡', href: '#contact' },
+  { name: 'Home', href: '#' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export function Navigation() {
@@ -70,7 +70,7 @@ export function Navigation() {
               </div>
             </a>
 
-            {/* Desktop navigation - dual language */}
+            {/* Desktop navigation */}
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => {
                 const isActive = (item.href === '#' && activeSection === '') || 
@@ -85,10 +85,7 @@ export function Navigation() {
                         : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
                     } hover:bg-white/5`}
                   >
-                    <span className="font-jp text-sm font-medium tracking-wide">
-                      {item.nameJp}
-                    </span>
-                    <span className="text-[8px] font-en tracking-[0.12em] uppercase opacity-60 group-hover:opacity-80">
+                    <span className="font-display text-sm font-medium tracking-wide uppercase">
                       {item.name}
                     </span>
                     {/* Active indicator */}
@@ -164,10 +161,7 @@ export function Navigation() {
                       transition={{ delay: index * 0.05 }}
                     >
                       <div className="flex flex-col">
-                        <span className={`font-jp text-lg font-medium ${isActive ? 'text-[var(--color-sekai-cyan)]' : 'text-[var(--color-text-primary)]'}`}>
-                          {item.nameJp}
-                        </span>
-                        <span className="text-[10px] font-en tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
+                        <span className={`font-display text-lg font-medium uppercase tracking-wide ${isActive ? 'text-[var(--color-sekai-cyan)]' : 'text-[var(--color-text-primary)]'}`}>
                           {item.name}
                         </span>
                       </div>

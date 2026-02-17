@@ -187,7 +187,7 @@ export function Projects() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section header - SEKAI style with Japanese */}
+        {/* Section header - SEKAI style */}
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -203,18 +203,13 @@ export function Projects() {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <Star className="w-4 h-4 text-[var(--color-sekai-yellow)]" />
-            <span className="text-sm text-[var(--color-text-secondary)] font-jp">注目作品</span>
-            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">FEATURED</span>
+            <span className="text-sm text-[var(--color-text-secondary)] font-display tracking-wide uppercase">Featured Work</span>
           </motion.div>
-          
-          {/* Japanese title */}
-          <h2 className="font-jp text-lg text-[var(--color-sekai-cyan)] tracking-wider mb-2">
-            プロジェクト
-          </h2>
+
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-jp">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto font-en">
             A collection of my work spanning machine learning, mobile development, web applications, and creative tools.
           </p>
         </motion.div>
@@ -371,8 +366,7 @@ export function Projects() {
               transition={{ duration: 0.4, delay: 0.2 }}
             >
               <Lock className="w-4 h-4 text-[var(--color-sekai-purple)]" />
-              <span className="text-sm text-[var(--color-text-secondary)] font-jp">非公開作品</span>
-              <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">PRIVATE</span>
+              <span className="text-sm text-[var(--color-text-secondary)] font-display tracking-wide uppercase">Private Work</span>
             </motion.div>
             <h3 className="text-2xl font-bold mb-3 font-display">
               <span className="text-gradient">Behind the Scenes</span>
@@ -417,7 +411,7 @@ export function Projects() {
             })}
           </div>
 
-          <p className="text-center text-[var(--color-text-muted)] text-sm mt-8 font-jp">
+          <p className="text-center text-[var(--color-text-muted)] text-sm mt-8 font-en">
             <Sparkles className="w-4 h-4 inline-block mr-1 text-[var(--color-sekai-yellow)]" />
             Interested in similar work? <a href="#contact" className="text-[var(--color-sekai-cyan)] hover:underline">Let's talk</a>
           </p>
@@ -438,8 +432,7 @@ export function Projects() {
             className="btn-ghost inline-flex items-center gap-2"
           >
             <Github className="w-5 h-5" />
-            <span className="font-jp">すべて見る</span>
-            <span className="text-[9px] font-en tracking-wider uppercase opacity-70">VIEW ALL</span>
+            <span className="font-display tracking-wide uppercase">View All Repositories</span>
             <ExternalLink className="w-4 h-4" />
           </a>
         </motion.div>

@@ -36,6 +36,8 @@ export function SekaiButton({
   ...props
 }: SekaiButtonProps) {
   const variantClass = variant !== 'cyan' ? `btn-sekai-${variant}` : '';
+  const primaryLabel = english || japanese;
+  const secondaryLabel = '';
   
   const sizeStyles = {
     sm: 'py-2 px-6 min-w-[120px]',
@@ -61,8 +63,8 @@ export function SekaiButton({
       whileTap={{ scale: 0.98 }}
       {...props}
     >
-      <span className={`btn-sekai__jp ${jpSizeStyles[size]}`}>{japanese}</span>
-      <span className="btn-sekai__en">{english}</span>
+      <span className={`btn-sekai__jp ${jpSizeStyles[size]}`}>{primaryLabel}</span>
+      {secondaryLabel && <span className="btn-sekai__en">{secondaryLabel}</span>}
     </motion.button>
   );
 }
@@ -84,6 +86,8 @@ export function SekaiIconButton({
   ...props
 }: SekaiIconButtonProps) {
   const variantClass = variant !== 'cyan' ? `btn-sekai-${variant}` : '';
+  const primaryLabel = english || japanese;
+  const secondaryLabel = '';
 
   return (
     <motion.button
@@ -99,8 +103,8 @@ export function SekaiIconButton({
     >
       <span className="text-xl opacity-80">{icon}</span>
       <div className="flex flex-col items-start">
-        <span className="btn-sekai__jp text-sm">{japanese}</span>
-        <span className="btn-sekai__en">{english}</span>
+        <span className="btn-sekai__jp text-sm">{primaryLabel}</span>
+        {secondaryLabel && <span className="btn-sekai__en">{secondaryLabel}</span>}
       </div>
     </motion.button>
   );
