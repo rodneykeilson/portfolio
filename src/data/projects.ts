@@ -32,6 +32,16 @@ export const projects: Project[] = [
     color: 'pink',
   },
   {
+    title: 'RetsuTomo',
+    description: 'Smart Queue Management System',
+    longDescription: 'A cross-platform React Native app for businesses and customers to manage queues remotely. Features real-time updates and push notifications.',
+    tech: ['React Native', 'Firebase', 'Cloud Functions', 'React Navigation'],
+    github: 'https://github.com/rodneykeilson/RetsuTomo',
+    category: 'mobile',
+    featured: true,
+    color: 'purple',
+  },
+  {
     title: 'ToxiScope',
     description: 'Multilabel Toxic Comment Detection',
     longDescription: 'Efficient Transformer-Based Multilabel Toxic Comment Detection for Gaming Communities. Features BERT-tiny fine-tuned with Focal Loss for CPU inference achieving 0.817 Macro-F1.',
