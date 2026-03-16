@@ -1,5 +1,5 @@
 import { Github, Code, Database } from 'lucide-react';
-import { projects, privateProjects, categoryLabels } from './data/projects';
+import { projects, categoryLabels } from './data/projects';
 
 function App() {
   return (
@@ -72,28 +72,6 @@ function App() {
               </div>
             ))}
           </div>
-
-          <h2 className="text-xl font-bold text-white mt-24 mb-8 flex items-center gap-4">
-            Other Noteworthy Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {privateProjects.map((project, idx) => (
-              <div key={idx} className="bg-[#0b0b0f] border border-gray-800 p-6 rounded-lg opacity-80 hover:opacity-100 transition-opacity flex flex-col">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-[#ff4f9a] text-xs font-mono uppercase tracking-wider">
-                    {categoryLabels[project.category as keyof typeof categoryLabels] || 'Confidential'}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-[#a1a1aa] text-sm flex-1">
-                  {project.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
         </div>
       </section>
 
