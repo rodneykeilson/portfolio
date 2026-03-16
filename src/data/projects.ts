@@ -22,6 +22,16 @@ export interface PrivateProject {
 
 export const projects: Project[] = [
   {
+    title: 'OSTMC',
+    description: 'Open Source Toxicity Multiclassifier',
+    longDescription: 'A robust toxic comment classification model and API using React, Vite, and modern machine learning techniques.',
+    tech: ['React', 'TypeScript', 'Vite', 'TailwindCSS'],
+    github: 'https://github.com/rodneykeilson/OSTMC',
+    category: 'web',
+    featured: true,
+    color: 'pink',
+  },
+  {
     title: 'ToxiScope',
     description: 'Multilabel Toxic Comment Detection',
     longDescription: 'Efficient Transformer-Based Multilabel Toxic Comment Detection for Gaming Communities. Features BERT-tiny fine-tuned with Focal Loss for CPU inference achieving 0.817 Macro-F1.',
