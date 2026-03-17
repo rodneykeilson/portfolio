@@ -23,18 +23,13 @@ export function Contact() {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <Send className="w-4 h-4 text-[var(--color-sekai-purple)]" />
-            <span className="text-sm text-[var(--color-text-secondary)] font-jp">お問い合わせ</span>
-            <span className="text-[9px] text-[var(--color-text-muted)] font-en tracking-wider uppercase">CONTACT</span>
+            <span className="text-sm text-[var(--color-text-secondary)] font-display tracking-wide uppercase">Contact</span>
           </motion.div>
-          
-          {/* Japanese title */}
-          <h2 className="font-jp text-lg text-[var(--color-sekai-purple)] tracking-wider mb-2">
-            連絡先
-          </h2>
+
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="text-gradient">Get In Touch</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl mx-auto font-jp">
+          <p className="text-[var(--color-text-secondary)] text-lg max-w-xl mx-auto font-en">
             Have a project in mind or just want to say hi? Feel free to reach out!
           </p>
         </motion.div>
@@ -53,7 +48,6 @@ export function Contact() {
               <Mail className="w-7 h-7 text-[var(--color-sekai-cyan)]" />
             </div>
             <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">Email</h3>
-            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">メール</p>
             <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-cyan)] transition-colors font-en">
               keilsonrodney0710@gmail.com
             </p>
@@ -73,7 +67,6 @@ export function Contact() {
               <Github className="w-7 h-7 text-[var(--color-sekai-pink)]" />
             </div>
             <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">GitHub</h3>
-            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">ギットハブ</p>
             <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-pink)] transition-colors flex items-center justify-center gap-1 font-en">
               @rodneykeilson <ArrowUpRight className="w-3 h-3" />
             </p>
@@ -93,7 +86,6 @@ export function Contact() {
               <Linkedin className="w-7 h-7 text-[var(--color-sekai-purple)]" />
             </div>
             <h3 className="font-bold text-lg text-[var(--color-text-primary)] mb-1 font-display">LinkedIn</h3>
-            <p className="text-xs font-jp text-[var(--color-text-muted)] mb-1">リンクトイン</p>
             <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-sekai-purple)] transition-colors flex items-center justify-center gap-1 font-en">
               Connect with me <ArrowUpRight className="w-3 h-3" />
             </p>
@@ -109,8 +101,8 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <SekaiButton
-            japanese="メッセージを送る"
-            english="SEND MESSAGE"
+            japanese="Send Message"
+            english=""
             variant="purple"
             onClick={() => window.location.href = 'mailto:keilsonrodney0710@gmail.com'}
           />
